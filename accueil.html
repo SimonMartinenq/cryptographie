@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Récupérer la valeur d'un input texte</title>
+</head>
+ 
+<body>
+    <input type="text" placeholder="Entrez une valeur ici" id="in">
+    <button type="button" onclick="getValue();">Récupérer la valeur</button>
+
+    <script>
+        function getValue() {
+            // Sélectionner l'élément input et récupérer sa valeur
+            var input = document.getElementById("in").value;
+
+            // Afficher la valeur
+            alert(input);
+        }
+    </script>
+    
+</body>
+
+</html>
