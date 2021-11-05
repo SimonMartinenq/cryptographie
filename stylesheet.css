@@ -1,4 +1,14 @@
 body {
     background-color: darkslategray;
     color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+h1{
+    text-align: center;    
+}
+
+.mainAcceuil div{
+    background-color: rgb(92, 101, 109);
+    border-radius: 10px;
+    display: inline-block;
 }
