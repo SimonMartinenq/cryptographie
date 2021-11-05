@@ -94,4 +94,15 @@ function facteur(n) {
     return decompose
 }
 
+function checkPrimeFacor(n) {
+    decompose = facteur(n)
+    isFactor = true
+    for (let i = 0; i < decompose.length; i++) {
+        for (let j = i + 1; j < decompose.length; j++) {
+            if (decompose[i] == decompose[j]) isFactor = false
+        }
+    }
+    return isFactor
+}
+
 buttunComputeEuler.onclick = computeEuler

@@ -82,7 +82,7 @@ def facteurs(n):
            d=d+1
     return decompose
 
-print(facteurs(10))
+#print(facteurs(10))
 
 def checkPrimeFactor(n):
     decompose = facteurs(n)
@@ -92,6 +92,8 @@ def checkPrimeFactor(n):
             if(decompose[i]==decompose[j]):
                 isFactor = False     
     return isFactor
+
+print(checkPrimeFactor(10))
 
 def solveEq(e,y,n):
     #suelement si n est premier ou produit de facteur premier
