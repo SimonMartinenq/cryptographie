@@ -1,4 +1,7 @@
-const buttunComputeEuler = document.getElementById("computeEuler")
+const buttonSubmitData = document.getElementById("submitData")
+const buttonCyptageA = document.getElementById("buttonCyptageA")
+const buttonCyptageB = document.getElementById("buttonCyptageB")
+
 
 function isPrime(n) {
     if (n == 2 || n == 3) return true
@@ -207,4 +210,43 @@ function checkSignature(yab, db, nb, ea, na) {
     return puissance(puissance(yab, ea, na), db, nb)
 }
 
-//buttunComputeEuler.onclick = computeEuler
+//check data et guess key privé
+buttonSubmitData.onclick = function() {
+    let na = document.getElementById("na").value
+    let ea = document.getElementById("ea").value
+    let da = document.getElementById("da").value
+    let nb = document.getElementById("nb").value
+    let eb = document.getElementById("eb").value
+    let db = document.getElementById("db").value
+    if (checkInfo(na, ea) && checkInfo(nb, eb)) {
+        alert("les informations des sujets A et B son correctes")
+    } else if (checkInfo(na, ea)) {
+        alert("les informations du sujet B son corrects")
+    } else if (checkInfo(nb, eb)) {
+        alert("les informations du sujet B son corrects")
+    } else {
+        alert("informations incorectes")
+    }
+    //complétion automatique des clefs privées si absentes
+    if (da == "") {
+        document.getElementById("da").value = guessKey(ea, na)
+    }
+    if (db == "") {
+        document.getElementById("db").value = guessKey(eb, nb)
+    }
+}
+
+//DECRYPTER ET CRYPTER RSA 
+//Si tu rentre un plaintext on te donne un cihpertext et vice-versa
+buttonCyptageA.onclick = function() {
+    let na = document.getElementById("na").value
+    let ea = document.getElementById("ea").value
+    let da = document.getElementById("da").value
+    let plaintext = document.getElementById("plaintext").value
+    let cihpertext = document.getElementById("ciphertext").value
+    if (plaintext == "") {
+        document.getElementById("plaintext").value = cipherRSAInt(cihpertext, ea, na)
+    } else {
+        document.getElementById("ciphertext").value = deciferRSAPenta(plaintext, da, na, "abcdefghijklmnopqrstuvwxyz .")
+    }
+}

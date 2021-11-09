@@ -11,13 +11,78 @@
 </head>
 
 <body>
+    <header>
+        Chapitre 3 : RSA cryptosystem
+    </header>
     <div>
-        <label for="number">Enter n: </label>
-        <input type="number" name="n" id="nEuler" required>
+        exchange messages
+        <table id="tableData">
+            <thead>
+                <tr>
+                    <th colspan="3" id="titleData">DATA</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Sujet A</td>
+                    <td>Sujet B</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">Public key</td>
+                    <td>
+                        <label for="na">Na = </label>
+                        <input type="number" name="na" id="na">
+                    </td>
+                    <td>
+                        <label for="nb">Nb = </label>
+                        <input type="number" name="nb" id="nb">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ea">Ea = </label>
+                        <input type="number" name="ea" id="ea">
+                    </td>
+                    <td>
+                        <label for="eb">Eb = </label>
+                        <input type="number" name="eb" id="eb">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Private key</td>
+                    <td>
+                        <label for="da">da = </label>
+                        <input type="number" name="da" id="da">
+                    </td>
+                    <td>
+                        <label for="db">Db = </label>
+                        <input type="number" name="db" id="db">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="submit" id="submitData">Submit data</button>
+        </div>
     </div>
     <div>
-        <input type="button" value="Compute Euler" id="computeEuler">
+        <form action="" method="get">
+            <div>
+                <label for="plaintext">plaintext: </label>
+                <input type="text" name="plaintext" id="plaintext">
+            </div>
+            <div>
+                <label for="ciphertext">ciphertext: </label>
+                <input type="text" name="ciphertext" id="ciphertext">
+            </div>
+            <div>
+                <input type="button" value="GO for A" id="buttonCyptageA">
+                <input type="button" value="GO for B" id="buttonCyptageB">
+            </div>
+        </form>
     </div>
+
     <script src="fonction.js"></script>
 </body>
 
