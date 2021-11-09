@@ -86,23 +86,30 @@ def facteurs(n):
 
 def checkPrimeFactor(n):
     decompose = facteurs(n)
-    isFactor = True
+    is_factor = True
     for i in range(len(decompose)):
         for j in range(i+1,len(decompose)):
             if(decompose[i]==decompose[j]):
-                isFactor = False     
-    return isFactor
+                is_factor = False     
+    return is_factor
 
-print(checkPrimeFactor(10))
+#print(checkPrimeFactor(10))
+
+def checkInfo(n, e):
+    d = calculerInverse(e,computeEuleur(n))
+    if checkPrimeFactor(n) != True: return False
+    elif pgcd(e, computeEuleur(n)) != 1 :return False
+    elif e*d%computeEuleur(n) != 1 : return False
+    else : return True
 
 def solveEq(e,y,n):
     #suelement si n est premier ou produit de facteur premier
     
-    isFactor = checkInfo(n)
+    is_factor = checkInfo(n,e)
     
-    if isFactor:
+    if is_factor:
         d=calculerInverse(e,computeEuleur(n))
-        return pow(y,d)%n
+        return pow(y,d,n)
     else : return "no solution"
     
 #print(solveEq(5,41,65))
@@ -114,16 +121,12 @@ def findRandomE(n):
         
 #print(findRandomE(85))
 
-def checkInfo(n, e):
-    d = calculerInverse(e,computeEuleur(n))
-    if checkPrimeFactor(n) != True: return False;
-    elif pgcd(e, computeEuleur(n)) != 1 :return False;
-    elif e*d%computeEuleur(n) != 1 : return False;
 
 #x : message de type entier
 #e, n : clef public du destinataire
 def cipherRSAInt(x,e,n):
-    return pow(x,e)%n 
+    return pow(x,e,n)
+
 
 #print(cipherRSAInt(12,7,143))  #12
 #print(cipherRSAInt(3,77,187))  #12
@@ -145,39 +148,37 @@ def guessKey(e,n):
 #print(guessKey(13,209))
 
 
-alphabet = "abcdefghijklmnopqrstuvwxyz ."
 def translateMotToNum(mots, alphabet):
     
-    numMot = []
+    num_mot = []
     for lettre in mots:
         i=1
         for a in alphabet:
             if a==lettre:
-                numMot.append(i)
+                num_mot.append(i)
             i = i+ 1
-    return numMot
-
+    return num_mot
 
 def translateNumToMot(num, alphabet):
-    numMot = []
+    num_mot = []
     for n in num:
         i = 1
         for a in alphabet:
             if i==n:
-                numMot.append(a)
+                num_mot.append(a)
             i = i + 1
-    return numMot
+    return num_mot
 
 ## REVOIR 2 LETTRES PAUSE PROBLEME N ET I 
 #message corresmonding with αβγδε −→ Nα294 + Nβ293 + Nγ292 + Nδ29 + Nε
 def deciferRSAPenta(number,d,n, alphabet):
     number = decipherRSAInt(number,d,n)   
     coef = [0]*5
-    
     for i in range(4):
         stop = False
         while(stop == False):
-            if number-pow(29,len(coef)-i-1) > 0 :
+            #print(number)
+            if number-pow(29,len(coef)-i-1) >0 :
                 coef[i] += 1
                 number -= pow(29,len(coef)-i-1)
             else: 
@@ -186,30 +187,32 @@ def deciferRSAPenta(number,d,n, alphabet):
 
     return translateNumToMot(coef,alphabet)
 
-    
+
+alphabet = "abcdefghijklmnopqrstuvwxyz ."    
 #print(deciferRSAPenta(3698031,1,1,alphabet))  #efrei
 #vous obtenez deux point de bonus
-''' print(deciferRSAPenta(46509674,23719,73277933,alphabet))
-print(deciferRSAPenta(32695436,23719,73277933,alphabet))
+print(deciferRSAPenta(46509674,23719,73277933,alphabet))
+'''print(deciferRSAPenta(32695436,23719,73277933,alphabet))
 print(deciferRSAPenta(59842725,23719,73277933,alphabet))
 print(deciferRSAPenta(66944637,23719,73277933,alphabet))
 print(deciferRSAPenta(2073634,23719,73277933,alphabet))
 print(deciferRSAPenta(8438724,23719,73277933,alphabet))
 print(deciferRSAPenta(389483,23719,73277933,alphabet))
  '''
+
  
 #nA = 73277933, dA = 23719
 
 #nA <= nB
-def sendSignature(nA,eA,dA,sA,nB,eB):
-    dA = guessKey(eA,nA)
-    return pow(pow(sA,dA,nA),eB,nB)
+def sendSignature(na,ea,sa,nb,eb):
+    da = guessKey(ea,na)
+    return pow(pow(sa,da,na),eb,nb)
 
 #print(sendSignature(209,13,0,10,221,25))
 
 #nA >= nB # attention ordre des parametres 
-def checkSignature(yAB,dB,nB,eA,nA):
-    return pow(pow(yAB,eA,nA),dB,nB)
+def checkSignature(yab,db,nb,ea,na):
+    return pow(pow(yab,ea,na),db,nb)
 
 #print(checkSignature(98,97,209,25,221)) # sB=21 ok
 
@@ -220,5 +223,4 @@ for i in range(1,n+1):
         count += computeEuleur(i)
     
 #print(count)
-    
-
+ 
