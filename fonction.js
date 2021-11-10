@@ -281,7 +281,44 @@ buttonBReceives.onclick = function() {
     document.getElementById("plaintext").value = decipherRSAInt(ciphertext, db, nb)
 }
 
+buttonASendSignature.onclick = function() {
+    let eb = document.getElementById("eb").value
+    let ea = document.getElementById("ea").value
+    let na = document.getElementById("na").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
+    if (sa != "" && sb != "") {
+        submitData()
+        document.getElementById("messageToSend").value = sendSignature(na, ea, sa, nb, eb)
+    } else alert("Signature manquante")
+}
 
+//VERIFIER
+buttonBSendSignature.onclick = function() {
+    let eb = document.getElementById("eb").value
+    let ea = document.getElementById("ea").value
+    let na = document.getElementById("na").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
+    if (sa != "" && sb != "") {
+        submitData()
+        document.getElementById("messageToSend").value = sendSignature(nb, eb, sb, na, ea)
+    } else alert("Signature manquante")
+}
+
+buttonACheck.onclick = function() {
+    if (sa != "" && sb != "") {
+        submitData()
+        let yba = document.getElementById("messageToCheck").value
+        let da = document.getElementById("da").value
+        let na = document.getElementById("na").value
+        let eb = document.getElementById("eb").value
+        let nb = document.getElementById("nb").value
+        alert(checkSignature(yba, da, na, eb, nb))
+    } else alert("Signature manquante")
+
+
+}
 
 //Signature
 buttonSubmitData.onclick = submitData
