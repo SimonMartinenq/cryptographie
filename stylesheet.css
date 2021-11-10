@@ -1,6 +1,14 @@
 body {
     background-color: darkslategray;
     color: white;
+    padding: 5em;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+    text-align: center;
+    font-size: 3em;
+    padding: 1em;
 }
 
 
@@ -13,7 +21,13 @@ td,
     border-collapse: collapse;
     padding: 1em;
     margin: 1em;
+    text-align: center;
 }
 
 
-/* ENCRYPTER ET DECRYPTER */
+/* ENCRYPTER ET DECRYPTER ET SIGNATURE*/
+
+#divCryptage,
+#divSignature {
+    margin: 2em;
+}
