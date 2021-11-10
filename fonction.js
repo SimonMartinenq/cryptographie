@@ -307,18 +307,38 @@ buttonBSendSignature.onclick = function() {
 }
 
 buttonACheck.onclick = function() {
+    let yba = document.getElementById("messageToCheck").value
+    let da = document.getElementById("da").value
+    let na = document.getElementById("na").value
+    let eb = document.getElementById("eb").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
     if (sa != "" && sb != "") {
         submitData()
-        let yba = document.getElementById("messageToCheck").value
-        let da = document.getElementById("da").value
-        let na = document.getElementById("na").value
-        let eb = document.getElementById("eb").value
-        let nb = document.getElementById("nb").value
-        alert(checkSignature(yba, da, na, eb, nb))
+        if (sa == checkSignature(yba, da, na, eb, nb)) {
+            alert("La signature est CORECTE")
+        } else {
+            alert("La signature est INCORECTE")
+        }
     } else alert("Signature manquante")
-
-
 }
 
-//Signature
+buttonBCheck.onclick = function() {
+
+    let yab = document.getElementById("messageToCheck").value
+    let db = document.getElementById("db").value
+    let na = document.getElementById("na").value
+    let ea = document.getElementById("ea").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
+    if (sa != "" && sb != "") {
+        submitData()
+        if (sa == checkSignature(yab, db, nb, ea, na)) {
+            alert("La signature est CORECTE")
+        } else {
+            alert("La signature est INCORECTE")
+        }
+    } else alert("Signature manquante")
+}
+
 buttonSubmitData.onclick = submitData
