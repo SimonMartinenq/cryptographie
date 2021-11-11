@@ -11,23 +11,28 @@
 </head>
 
 <body>
-
-    <header>
-        <div>
-            logo
-        </div>
-        <nav>
-            <ul>
+    <header class="header_container">
+        <nav class="displayFlex">
+            <a href="/cryptographie/accueil.html">
+                <h1>Cryptographie</h1>
+            </a>
+            <ul id="nav_bar_liste">
                 <li>
-                    <a href="/cryptographie/accueil.html">Chapitre 1 :</a></li>
+                    <a href="/cryptographie/accueil.html" class="button_topnavbar">Accueil</a>
+                </li>
                 <li>
-                    <a href="/cryptographie/accueil.html">Chapitre 2 :</a></li>
+                    <a href="/cryptographie/chapitre1.html" class="button_topnavbar">Chapitre 1 :</a>
+                </li>
                 <li>
-                    <a href="/cryptographie/chapitre3.html">Chapitre 3 : </a></li>
+                    <a href="/cryptographie/chapitre2.html" class="button_topnavbar">Chapitre 2 :</a>
+                </li>
+                <li>
+                    <a href="/cryptographie/chapitre3.html" class="button_topnavbar">Chapitre 3 :</a>
+                </li>
             </ul>
+            <div id="menu-button" class="close"></div>
         </nav>
     </header>
-
     <main>
         <div>
             <table id="tableData">
@@ -127,9 +132,30 @@
                 </div>
             </form>
         </div>
+        <div>
+            Compute Euler
+            <div>
+                <label for="computeEuler">n: </label>
+                <input type="number" name="computeEuler" id="computeEuler">
+                <input type="button" value="Compute Euler" id="computeEulerButton">
+            </div>
+        </div>
+        <div>
+            Compute Euler puissance
+            <div>
+                <label for="nEuler">n: </label>
+                <input type="number" name="nEuler" id="nEuler">
+
+                <label for="puissance">puissance: </label>
+                <input type="number" name="puissance" id="puissance">
+
+                <label for="moduloEuler">modulo: </label>
+                <input type="number" name="moduloEuler" id="moduloEuler">
+
+                <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
+            </div>
+        </div>
     </main>
-
-
     <script src="fonction.js"></script>
 </body>
 
