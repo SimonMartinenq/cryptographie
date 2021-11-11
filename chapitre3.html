@@ -13,21 +13,21 @@
 <body>
     <header class="header_container">
         <nav class="displayFlex">
-            <a href="/cryptographie/accueil.html">
+            <a href="/accueil.html">
                 <h1>Cryptographie</h1>
             </a>
             <ul id="nav_bar_liste">
                 <li>
-                    <a href="/cryptographie/accueil.html" class="button_topnavbar">Accueil</a>
+                    <a href="/accueil.html" class="button_topnavbar">Accueil</a>
                 </li>
                 <li>
-                    <a href="/cryptographie/chapitre1.html" class="button_topnavbar">Chapitre 1 :</a>
+                    <a href="/chapitre1.html" class="button_topnavbar">Chapitre 1 :</a>
                 </li>
                 <li>
-                    <a href="/cryptographie/chapitre2.html" class="button_topnavbar">Chapitre 2 :</a>
+                    <a href="/chapitre2.html" class="button_topnavbar">Chapitre 2 :</a>
                 </li>
                 <li>
-                    <a href="/cryptographie/chapitre3.html" class="button_topnavbar">Chapitre 3 :</a>
+                    <a href="/chapitre3.html" class="button_topnavbar">Chapitre 3 :</a>
                 </li>
             </ul>
             <div id="menu-button" class="close"></div>
@@ -135,16 +135,16 @@
         <div>
             Compute Euler
             <div>
-                <label for="computeEuler">n: </label>
-                <input type="number" name="computeEuler" id="computeEuler">
+                <label for="nEuler">n: </label>
+                <input type="number" name="nEuler" id="nEuler">
                 <input type="button" value="Compute Euler" id="computeEulerButton">
             </div>
         </div>
         <div>
             Compute Euler puissance
             <div>
-                <label for="nEuler">n: </label>
-                <input type="number" name="nEuler" id="nEuler">
+                <label for="nombrePuissance">nombre: </label>
+                <input type="number" name="nombrePuissance" id="nombrePuissance">
 
                 <label for="puissance">puissance: </label>
                 <input type="number" name="puissance" id="puissance">
@@ -155,7 +155,20 @@
                 <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
             </div>
         </div>
+        <div>
+            Trouver l'inverse d'un nombre
+            <div>
+                <label for="nInverer">Nombre à inverser: </label>
+                <input type="number" name="nInverer" id="nInverer">
+
+                <label for="modInverser">Modulo: </label>
+                <input type="number" name="modInverser" id="modInverser">
+
+                <input type="button" value="Inverser" id="buttonNInverser">
+            </div>
+        </div>
     </main>
+
     <script src="fonction.js"></script>
 </body>
 

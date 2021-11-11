@@ -7,6 +7,9 @@ const buttonACheck = document.getElementById("aCheck")
 const buttonBCheck = document.getElementById("bCheck")
 const buttonASendSignature = document.getElementById("aSendSignature")
 const buttonBSendSignature = document.getElementById("bSendSignature")
+const buttonComputeEuler = document.getElementById("computeEulerButton")
+const buttonComputeEulerPuissance = document.getElementById("computeEulerPuissanceButton")
+const buttonNInverser = document.getElementById("buttonNInverser")
 
 
 function isPrime(n) {
@@ -70,7 +73,7 @@ function calculateInverse(a, modulo) {
             if (rk[i] == 0) stop = true
             i += 1
         }
-        return mod(vk[i - 2], modulo) //car en js -64%165 = 165 et non 101
+        return mod(vk[i - 2], modulo)
     } else return -1
 }
 
@@ -246,9 +249,9 @@ function submitData() {
     }
 
 }
-
-//DECRYPTER ET CRYPTER RSA 
-//code redandant mais j'ai pas envie de me prendre la tête
+buttonSubmitData.onclick = submitData
+    //DECRYPTER ET CRYPTER RSA 
+    //code redandant mais j'ai pas envie de me prendre la tête
 buttonASend.onclick = function() {
     submitData()
     let nb = document.getElementById("nb").value
@@ -293,7 +296,6 @@ buttonASendSignature.onclick = function() {
     } else alert("Signature manquante")
 }
 
-//VERIFIER
 buttonBSendSignature.onclick = function() {
     let eb = document.getElementById("eb").value
     let ea = document.getElementById("ea").value
@@ -341,4 +343,21 @@ buttonBCheck.onclick = function() {
     } else alert("Signature manquante")
 }
 
-buttonSubmitData.onclick = submitData
+buttonComputeEuler.onclick = function() {
+    let n = document.getElementById("nEuler").value
+    alert("Le nombre d'éléments inverssible est: " + computeEuler(n))
+}
+
+buttonComputeEulerPuissance.onclick = function() {
+    let n = document.getElementById("nombrePuissance").value
+    let p = document.getElementById("puissance").value
+    let modp = document.getElementById("moduloEuler").value
+    alert("Le résultat est: " + puissance(n, p, modp))
+}
+
+buttonNInverser.onclick = function() {
+    let nInverser = document.getElementById("nInverer").value
+    let modInverser = document.getElementById("modInverser").value
+    console.log(nInverser + " " + modInverser)
+    alert(calculateInverse(nInverser, modInverser))
+}
