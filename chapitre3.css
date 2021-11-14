@@ -1,0 +1,19 @@
+/* decommenter si utilisation footer 
+  .footer{ 
+    float: left; 
+    width: 100%; 
+     background: #83547B
+  }*/
+
+
+/* TABLE DATA */
+
+#tableData,
+td,
+#titleData {
+    border: solid white 1px;
+    border-collapse: collapse;
+    padding: 1em;
+    margin: 1em;
+    text-align: center;
+}

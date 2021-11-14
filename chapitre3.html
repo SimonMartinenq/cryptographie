@@ -6,36 +6,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheet.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/chapitre3.css">
     <title>Chapitre 3</title>
 </head>
 
 <body>
     <header class="header_container">
         <nav class="displayFlex">
-            <a href="/accueil.html">
-                <h1>Cryptographie</h1>
-            </a>
+            <a href="/accueil.html"><img src="/logo.png" alt="logo" id="logo"></a>
             <ul id="nav_bar_liste">
                 <li>
                     <a href="/accueil.html" class="button_topnavbar">Accueil</a>
                 </li>
                 <li>
-                    <a href="/chapitre1.html" class="button_topnavbar">Chapitre 1 :</a>
+                    <a href="/chapitre1.html" class="button_topnavbar">Chapitre 1</a>
                 </li>
                 <li>
-                    <a href="/chapitre2.html" class="button_topnavbar">Chapitre 2 :</a>
+                    <a href="/chapitre2.html" class="button_topnavbar">Chapitre 2</a>
                 </li>
                 <li>
-                    <a href="/chapitre3.html" class="button_topnavbar">Chapitre 3 :</a>
+                    <a href="/chapitre3.html" class="button_topnavbar">Chapitre 3</a>
                 </li>
             </ul>
             <div id="menu-button" class="close"></div>
         </nav>
     </header>
     <main>
-        <div id="colonnes">
-            <div id="coldroite">
+
+        <section class="colgauche">
+            <div>
+
                 <table id="tableData">
                     <thead>
                         <tr>
@@ -93,11 +94,12 @@
                         </tr>
                     </tbody>
                 </table>
+
                 <div>
                     <button type="submit" id="submitData">Submit data</button>
                 </div>
             </div>
-            <div id="colgauche">
+            <div>
                 <form action="" method="get">
                     <div id="divCryptage">
                         <div>
@@ -147,18 +149,21 @@
                     </div>
                 </form>
             </div>
-        </div>
-        <div>
-            Compute Euler
+        </section>
+
+        <section class="coldroite">
+
+
             <div>
+                <p>Compute Euler</p>
                 <label for="nEuler">n: </label>
                 <input type="number" name="nEuler" id="nEuler">
                 <input type="button" value="Compute Euler" id="computeEulerButton">
             </div>
-        </div>
-        <div>
-            Compute Euler puissance
+
+
             <div>
+                <p>Compute Euler puissance</p>
                 <label for="nombrePuissance">nombre: </label>
                 <input type="number" name="nombrePuissance" id="nombrePuissance">
 
@@ -170,10 +175,11 @@
 
                 <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
             </div>
-        </div>
-        <div>
-            Trouver l'inverse d'un nombre
+
+
+
             <div>
+                <p>Trouver l'inverse d'un nombre</p>
                 <label for="nInverer">Nombre à inverser: </label>
                 <input type="number" name="nInverer" id="nInverer">
 
@@ -182,10 +188,10 @@
 
                 <input type="button" value="Inverser" id="buttonNInverser">
             </div>
-        </div>
-        <div>
-            Résoudre l'équation du type : x^p = y in Z/mZ
+
+
             <div>
+                <p> Résoudre l'équation du type : x^p = y in Z/mZ</p>
                 <label for="pEquation">p: </label>
                 <input type="number" name="pEquation" id="pEquation">
 
@@ -197,7 +203,9 @@
 
                 <input type="button" value="Résoudre" id="buttonResoudreEquation">
             </div>
-        </div>
+
+
+        </section>
     </main>
 
     <script src="fonction.js"></script>

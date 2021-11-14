@@ -7,16 +7,18 @@ body {
     background-size: cover;
 }
 
-main {
-    padding: 5%;
-}
-
 .displayFlex {
     display: flex;
 }
 
 
 /* HEADER */
+
+#logo {
+    height: 80px;
+    width: 80px;
+    margin: 10%;
+}
 
 .header_container {
     background-color: darkslategray;
@@ -66,22 +68,20 @@ main {
 }
 
 
-/* TABLEAU DATA */
+/* collones */
 
-#tableData,
-td,
-#titleData {
-    border: solid white 1px;
-    border-collapse: collapse;
-    padding: 1em;
-    margin: 1em;
-    text-align: center;
+.coldroite {
+    float: right;
+    width: 30%;
+    margin: 2%;
 }
 
+.colgauche {
+    overflow: hidden;
+    float: left;
+    width: 65%;
+}
 
-/* ENCRYPTER ET DECRYPTER ET SIGNATURE*/
-
-#divCryptage,
-#divSignature {
-    margin: 2em;
+p {
+    font-size: 1.5em;
 }
