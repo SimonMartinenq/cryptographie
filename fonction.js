@@ -10,7 +10,8 @@ const buttonBSendSignature = document.getElementById("bSendSignature")
 const buttonComputeEuler = document.getElementById("computeEulerButton")
 const buttonComputeEulerPuissance = document.getElementById("computeEulerPuissanceButton")
 const buttonNInverser = document.getElementById("buttonNInverser")
-
+const buttonResoudreEquation = document.getElementById("buttonResoudreEquation")
+const buttonDecipherPenta = document.getElementById("buttonDecipherPenta")
 
 function isPrime(n) {
     if (n == 2 || n == 3) return true
@@ -197,7 +198,6 @@ function deciferRSAPenta(number, d, n, alphabet) {
     for (let i = 0; i < 4; i++) {
         let stop = false
         while (!stop) {
-            console.log(num)
             if (num - Math.pow(29, coef.length - i - 1) > 0) {
                 coef[i] += 1
                 num -= Math.pow(29, coef.length - i - 1)
@@ -345,19 +345,55 @@ buttonBCheck.onclick = function() {
 
 buttonComputeEuler.onclick = function() {
     let n = document.getElementById("nEuler").value
-    alert("Le nombre d'éléments inverssible est: " + computeEuler(n))
+    if (n == "") {
+        alert("Il manque des infromations")
+    } else {
+        alert("Le nombre d'éléments inverssible est: " + computeEuler(n))
+    }
+
 }
 
 buttonComputeEulerPuissance.onclick = function() {
     let n = document.getElementById("nombrePuissance").value
     let p = document.getElementById("puissance").value
     let modp = document.getElementById("moduloEuler").value
-    alert("Le résultat est: " + puissance(n, p, modp))
+    if (n == "" || p == "" || modp == "") {
+        alert("Il manque des informations")
+    } else {
+        alert("Le résultat est: " + puissance(n, p, modp))
+    }
 }
 
+//PROBELM
 buttonNInverser.onclick = function() {
     let nInverser = document.getElementById("nInverer").value
     let modInverser = document.getElementById("modInverser").value
-    console.log(nInverser + " " + modInverser)
-    alert(calculateInverse(nInverser, modInverser))
+    if (nInverser == "" || modInverser == "") {
+        alert("Il manque des informations")
+    } else {
+        alert(calculateInverse(nInverser, modInverser))
+    }
+}
+
+buttonResoudreEquation.onclick = function() {
+    let p = document.getElementById("pEquation").value
+    let y = document.getElementById("yEquation").value
+    let modEq = document.getElementById("modEquation").value
+
+    if (p == "" || y == "" || modEq == "") {
+        alert("Il manque des informations")
+    } else {
+        alert("x = " + solveEq(p, y, modEq))
+    }
+
+}
+
+//1) mettre l'alphabet automatique 
+//2) fait en sorte qu'avec l'alphabet sa fonction 
+buttonDecipherPenta.onclick = function() {
+    let number = document.getElementById("messageToDecipher").value
+    let na = document.getElementById("na").value
+    let da = document.getElementById("da").value
+        //let alphabet = document.getElementById("alphabet").value
+    alert(deciferRSAPenta(number, da, na, "abcdefghijklmnopqrstuvwxyz ."))
 }

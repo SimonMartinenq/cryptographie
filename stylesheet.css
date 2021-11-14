@@ -1,10 +1,17 @@
 body {
     background-color: darkslategray;
     color: white;
-    padding: 5em;
+    padding: 0px;
+    margin: 0px;
     font-family: 'Courier New', Courier, monospace;
     background-size: cover;
+}
+
+main {
     margin: 0;
+    overflow: hidden;
+    margin: 0px auto;
+    width: 100%;
 }
 
 .displayFlex {
@@ -63,6 +70,28 @@ body {
 
 h1 {
     margin: 1em;
+}
+
+
+/* BARRE LATERALE DROITE */
+
+.colonnes {
+    width: 100%;
+    /*  background: #B1CACD;  */
+}
+
+.coldroite {
+    overflow: hidden;
+    float: right;
+    width: 50%;
+    background: #8A8B65;
+}
+
+.colgauche {
+    overflow: hidden;
+    float: left;
+    width: 50%;
+    background: #2B8E8E;
 }
 
 
