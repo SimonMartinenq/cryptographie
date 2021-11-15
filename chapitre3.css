@@ -8,11 +8,14 @@
 
 /* TABLE DATA */
 
-#tableData,
+#tableData {
+    border-collapse: collapse;
+    margin: 1em;
+}
+
 td,
 #titleData {
     border: solid white 1px;
-    border-collapse: collapse;
     padding: 1em;
     margin: 1em;
     text-align: center;
