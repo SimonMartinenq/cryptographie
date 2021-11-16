@@ -391,16 +391,16 @@ buttonComputeEulerPuissance.onclick = function() {
     }
 }
 
-//PROBELM
-buttonNInverser.onclick = function() {
-    let nInverser = document.getElementById("nInverer").value
+
+/* buttonNInverser.onclick = function() {
+    let nInverer = document.getElementById("nInverer").value
     let modInverser = document.getElementById("modInverser").value
-    if (nInverser == "" || modInverser == "") {
+    if (nInverer == "" || modInverser == "") {
         alert("Il manque des informations")
     } else {
-        alert(calculateInverse(nInverser, modInverser))
+        alert(calculateInverse(nInverer, modInverser))
     }
-}
+} */
 
 buttonResoudreEquation.onclick = function() {
     let p = document.getElementById("pEquation").value
