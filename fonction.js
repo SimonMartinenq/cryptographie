@@ -223,7 +223,7 @@ function sendSignature(na, da, sa, nb, eb) {
     if (na <= nb) {
         return puissance(puissance(sa, da, na), eb, nb)
     } else {
-        return puissance(puissance(sa, eb, nb), ea, na)
+        return puissance(puissance(sa, eb, nb), da, na)
     }
 }
 
@@ -319,7 +319,7 @@ buttonASendSignature.onclick = function() {
     let nb = document.getElementById("nb").value
     let sa = document.getElementById("sa").value
     if (sa != "") {
-        document.getElementById("messageToSend").value = puissance(puissance(sa, da, na), eb, nb)
+        document.getElementById("messageToSend").value = sendSignature(na, da, sa, nb, eb)
     } else alert("Signature manquante")
 }
 
@@ -331,7 +331,7 @@ buttonBSendSignature.onclick = function() {
     let nb = document.getElementById("nb").value
     let sb = document.getElementById("sb").value
     if (sb != "") {
-        document.getElementById("messageToSend").value = puissance(puissance(sb, db, nb), ea, na)
+        document.getElementById("messageToSend").value = sendSignature(nb, db, sb, na, ea)
     } else alert("Signature manquante")
 }
 
