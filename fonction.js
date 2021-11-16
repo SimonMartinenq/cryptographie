@@ -7,7 +7,11 @@ const buttonACheck = document.getElementById("aCheck")
 const buttonBCheck = document.getElementById("bCheck")
 const buttonASendSignature = document.getElementById("aSendSignature")
 const buttonBSendSignature = document.getElementById("bSendSignature")
-
+const buttonComputeEuler = document.getElementById("computeEulerButton")
+const buttonComputeEulerPuissance = document.getElementById("computeEulerPuissanceButton")
+const buttonNInverser = document.getElementById("buttonNInverser")
+const buttonResoudreEquation = document.getElementById("buttonResoudreEquation")
+const buttonDecipherPenta = document.getElementById("buttonDecipherPenta")
 
 function isPrime(n) {
     if (n == 2 || n == 3) return true
@@ -70,7 +74,7 @@ function calculateInverse(a, modulo) {
             if (rk[i] == 0) stop = true
             i += 1
         }
-        return mod(vk[i - 2], modulo) //car en js -64%165 = 165 et non 101
+        return mod(vk[i - 2], modulo)
     } else return -1
 }
 
@@ -194,7 +198,6 @@ function deciferRSAPenta(number, d, n, alphabet) {
     for (let i = 0; i < 4; i++) {
         let stop = false
         while (!stop) {
-            console.log(num)
             if (num - Math.pow(29, coef.length - i - 1) > 0) {
                 coef[i] += 1
                 num -= Math.pow(29, coef.length - i - 1)
@@ -246,9 +249,9 @@ function submitData() {
     }
 
 }
-
-//DECRYPTER ET CRYPTER RSA 
-//code redandant mais j'ai pas envie de me prendre la tête
+buttonSubmitData.onclick = submitData
+    //DECRYPTER ET CRYPTER RSA 
+    //code redandant mais j'ai pas envie de me prendre la tête
 buttonASend.onclick = function() {
     submitData()
     let nb = document.getElementById("nb").value
@@ -281,7 +284,116 @@ buttonBReceives.onclick = function() {
     document.getElementById("plaintext").value = decipherRSAInt(ciphertext, db, nb)
 }
 
+buttonASendSignature.onclick = function() {
+    let eb = document.getElementById("eb").value
+    let ea = document.getElementById("ea").value
+    let na = document.getElementById("na").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
+    if (sa != "" && sb != "") {
+        submitData()
+        document.getElementById("messageToSend").value = sendSignature(na, ea, sa, nb, eb)
+    } else alert("Signature manquante")
+}
 
+buttonBSendSignature.onclick = function() {
+    let eb = document.getElementById("eb").value
+    let ea = document.getElementById("ea").value
+    let na = document.getElementById("na").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
+    if (sa != "" && sb != "") {
+        submitData()
+        document.getElementById("messageToSend").value = sendSignature(nb, eb, sb, na, ea)
+    } else alert("Signature manquante")
+}
 
-//Signature
-buttonSubmitData.onclick = submitData
+buttonACheck.onclick = function() {
+    let yba = document.getElementById("messageToCheck").value
+    let da = document.getElementById("da").value
+    let na = document.getElementById("na").value
+    let eb = document.getElementById("eb").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
+    if (sa != "" && sb != "") {
+        submitData()
+        if (sa == checkSignature(yba, da, na, eb, nb)) {
+            alert("La signature est CORECTE")
+        } else {
+            alert("La signature est INCORECTE")
+        }
+    } else alert("Signature manquante")
+}
+
+buttonBCheck.onclick = function() {
+
+    let yab = document.getElementById("messageToCheck").value
+    let db = document.getElementById("db").value
+    let na = document.getElementById("na").value
+    let ea = document.getElementById("ea").value
+    let nb = document.getElementById("nb").value
+    let sa = document.getElementById("sa").value
+    if (sa != "" && sb != "") {
+        submitData()
+        if (sa == checkSignature(yab, db, nb, ea, na)) {
+            alert("La signature est CORECTE")
+        } else {
+            alert("La signature est INCORECTE")
+        }
+    } else alert("Signature manquante")
+}
+
+buttonComputeEuler.onclick = function() {
+    let n = document.getElementById("nEuler").value
+    if (n == "") {
+        alert("Il manque des infromations")
+    } else {
+        alert("Le nombre d'éléments inverssible est: " + computeEuler(n))
+    }
+
+}
+
+buttonComputeEulerPuissance.onclick = function() {
+    let n = document.getElementById("nombrePuissance").value
+    let p = document.getElementById("puissance").value
+    let modp = document.getElementById("moduloEuler").value
+    if (n == "" || p == "" || modp == "") {
+        alert("Il manque des informations")
+    } else {
+        alert("Le résultat est: " + puissance(n, p, modp))
+    }
+}
+
+//PROBELM
+buttonNInverser.onclick = function() {
+    let nInverser = document.getElementById("nInverer").value
+    let modInverser = document.getElementById("modInverser").value
+    if (nInverser == "" || modInverser == "") {
+        alert("Il manque des informations")
+    } else {
+        alert(calculateInverse(nInverser, modInverser))
+    }
+}
+
+buttonResoudreEquation.onclick = function() {
+    let p = document.getElementById("pEquation").value
+    let y = document.getElementById("yEquation").value
+    let modEq = document.getElementById("modEquation").value
+
+    if (p == "" || y == "" || modEq == "") {
+        alert("Il manque des informations")
+    } else {
+        alert("x = " + solveEq(p, y, modEq))
+    }
+
+}
+
+//1) mettre l'alphabet automatique 
+//2) fait en sorte qu'avec l'alphabet sa fonction 
+buttonDecipherPenta.onclick = function() {
+    let number = document.getElementById("messageToDecipher").value
+    let na = document.getElementById("na").value
+    let da = document.getElementById("da").value
+        //let alphabet = document.getElementById("alphabet").value
+    alert(deciferRSAPenta(number, da, na, "abcdefghijklmnopqrstuvwxyz ."))
+}

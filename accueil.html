@@ -3,22 +3,33 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="stylesheet.css">
-    <title>Récupérer la valeur d'un input texte</title>
+    <link rel="stylesheet" href="/main.css">
+    <title>Accueil</title>
 </head>
 
 <body>
-    <input type="text" placeholder="Entrez une valeur ici" id="in">
-    <button type="button" onclick="getValue();">Récupérer la valeur</button>
+    <header class="header_container">
+        <nav class="displayFlex">
+            <a href="/accueil.html"><img src="/logo.png" alt="logo" id="logo"></a>
+            <ul id="nav_bar_liste">
+                <li>
+                    <a href="/accueil.html" class="button_topnavbar">Accueil</a>
+                </li>
+                <li>
+                    <a href="/chapitre1.html" class="button_topnavbar">Chapitre 1</a>
+                </li>
+                <li>
+                    <a href="/chapitre2.html" class="button_topnavbar">Chapitre 2</a>
+                </li>
+                <li>
+                    <a href="/chapitre3.html" class="button_topnavbar">Chapitre 3</a>
+                </li>
+            </ul>
+            <div id="menu-button" class="close"></div>
+        </nav>
+    </header>
 
     <script>
-        function getValue() {
-            // Sélectionner l'élément input et récupérer sa valeur
-            var input = document.getElementById("in").value;
-
-            // Afficher la valeur
-            alert(input);
-        }
     </script>
 
 </body>
