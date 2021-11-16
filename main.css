@@ -1,7 +1,7 @@
 body {
     background-color: silver;
     color: black;
-    padding: 0px;
+    padding: opx;
     margin: 0px;
     font-family: 'Courier New', Courier, monospace;
     background-size: cover;
@@ -14,6 +14,13 @@ body {
 .center {
     display: flex;
     justify-content: center;
+}
+
+.center_interligne {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 
@@ -72,17 +79,28 @@ body {
 
 .coldroite {
     float: right;
-    width: 30%;
+    width: 23%;
     padding: 2%;
     border-left: solid white;
+}
+
+#computeEulerButton,
+#computeEulerPuissanceButton,
+#buttonNInverser,
+#buttonResoudreEquation {
+    cursor: pointer;
 }
 
 .colgauche {
     overflow: hidden;
     float: left;
     width: 65%;
+    padding: 2%;
 }
 
-p {
+.coldroite p {
     font-size: 1.5em;
 }
+
+
+/* fromulaire classic */

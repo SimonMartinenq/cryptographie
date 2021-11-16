@@ -126,13 +126,22 @@ function solveEq(e, y, n) {
     } else return "no solution"
 }
 
-function checkInfo(n, e) {
+function checkInfoPublic(n, d) {
+    let e = calculateInverse(d, computeEuler(n))
+    if (!checkPrimeFactor(n)) return false
+    else if (pgcd(e, computeEuler(n)) != 1) return false
+    else if (mod(e * d, computeEuler(n)) != 1) return false
+    else return true
+}
+
+function checkInfoPrivate(n, e) {
     let d = calculateInverse(e, computeEuler(n))
     if (!checkPrimeFactor(n)) return false
     else if (pgcd(e, computeEuler(n)) != 1) return false
     else if (mod(e * d, computeEuler(n)) != 1) return false
     else return true
 }
+
 
 //En réalité cela ne choisi pas au hasard mais le premier e possible
 function findRandomE(n) {
@@ -210,13 +219,21 @@ function deciferRSAPenta(number, d, n, alphabet) {
     return translateNumToMot(coef, alphabet)
 }
 
-function sendSignature(na, ea, sa, nb, eb) {
-    let da = guessKey(ea, na)
-    return puissance(puissance(sa, da, na), eb, nb)
+function sendSignature(na, da, sa, nb, eb) {
+    if (na <= nb) {
+        return puissance(puissance(sa, da, na), eb, nb)
+    } else {
+        return puissance(puissance(sa, eb, nb), ea, na)
+    }
 }
 
 function checkSignature(yab, db, nb, ea, na) {
-    return puissance(puissance(yab, ea, na), db, nb)
+    if (na <= nb) {
+        return puissance(puissance(yab, db, nb), ea, na)
+    } else {
+        return puissance(puissance(yab, ea, na), db, nb)
+    }
+
 }
 
 //check data et guess key privé
@@ -227,28 +244,38 @@ function submitData() {
     let nb = document.getElementById("nb").value
     let eb = document.getElementById("eb").value
     let db = document.getElementById("db").value
-    if (na == "" || ea == ""  || nb == "" || eb == "" ) {
+
+    if (na == "" && nb == "") {
         alert("Il manque des informations")
-    } else {
-        if (checkInfo(na, ea) && checkInfo(nb, eb)) {
-            alert("les informations des sujets A et B son correctes")
-        } else if (checkInfo(na, ea)) {
-            alert("les informations du sujet B son corrects")
-        } else if (checkInfo(nb, eb)) {
-            alert("les informations du sujet B son corrects")
-        } else {
-            alert("informations incorectes")
-        }
-        //complétion automatique des clefs privées si absentes
-        if (da == "") {
+    }
+    //sujet A
+    if (na != "") {
+        if (ea != "") {
+            alert("Les informations de A sont correctes: " + checkInfoPrivate(na, ea))
             document.getElementById("da").value = guessKey(ea, na)
+        } else if (da != "") {
+            alert("Les informations de A sont correctes: " + checkInfoPublic(na, da))
+            document.getElementById("ea").value = guessPriveKey(da, na)
+        } else {
+            alert("Les informations de A sont correctes: " + checkInfoPublic(nb, db))
         }
-        if (db == "") {
+
+    }
+    //sujet B
+    if (nb != "") {
+        if (eb != "") {
+            alert("Les informations de B sont correctes: " + checkInfoPrivate(nb, eb))
             document.getElementById("db").value = guessKey(eb, nb)
+        } else if (db != "") {
+            alert("Les informations de B sont correctes: " + checkInfoPublic(nb, db))
+            document.getElementById("eb").value = guessKey(db, nb)
+        } else {
+            alert("Les informations de B sont correctes: " + checkInfoPublic(nb, db))
         }
     }
-
 }
+
+
 buttonSubmitData.onclick = submitData
     //DECRYPTER ET CRYPTER RSA 
     //code redandant mais j'ai pas envie de me prendre la tête
@@ -285,60 +312,60 @@ buttonBReceives.onclick = function() {
 }
 
 buttonASendSignature.onclick = function() {
+    submitData()
     let eb = document.getElementById("eb").value
-    let ea = document.getElementById("ea").value
+    let da = document.getElementById("da").value
     let na = document.getElementById("na").value
     let nb = document.getElementById("nb").value
     let sa = document.getElementById("sa").value
-    if (sa != "" && sb != "") {
-        submitData()
-        document.getElementById("messageToSend").value = sendSignature(na, ea, sa, nb, eb)
+    if (sa != "") {
+        document.getElementById("messageToSend").value = puissance(puissance(sa, da, na), eb, nb)
     } else alert("Signature manquante")
 }
 
 buttonBSendSignature.onclick = function() {
-    let eb = document.getElementById("eb").value
+    submitData()
+    let db = document.getElementById("db").value
     let ea = document.getElementById("ea").value
     let na = document.getElementById("na").value
     let nb = document.getElementById("nb").value
-    let sa = document.getElementById("sa").value
-    if (sa != "" && sb != "") {
-        submitData()
-        document.getElementById("messageToSend").value = sendSignature(nb, eb, sb, na, ea)
+    let sb = document.getElementById("sb").value
+    if (sb != "") {
+        document.getElementById("messageToSend").value = puissance(puissance(sb, db, nb), ea, na)
     } else alert("Signature manquante")
 }
 
 buttonACheck.onclick = function() {
+    submitData()
     let yba = document.getElementById("messageToCheck").value
     let da = document.getElementById("da").value
     let na = document.getElementById("na").value
     let eb = document.getElementById("eb").value
     let nb = document.getElementById("nb").value
-    let sa = document.getElementById("sa").value
-    if (sa != "" && sb != "") {
-        submitData()
-        if (sa == checkSignature(yba, da, na, eb, nb)) {
-            alert("La signature est CORECTE")
+    let sb = document.getElementById("sb").value
+    if (sb != "") {
+        if (sb == checkSignature(yba, da, na, eb, nb)) {
+            alert("Le message envoyé est CORECTE")
         } else {
-            alert("La signature est INCORECTE")
+            alert("Le message envoyé est INCORECTE")
         }
     } else alert("Signature manquante")
 }
 
 buttonBCheck.onclick = function() {
-
+    submitData()
     let yab = document.getElementById("messageToCheck").value
     let db = document.getElementById("db").value
     let na = document.getElementById("na").value
     let ea = document.getElementById("ea").value
     let nb = document.getElementById("nb").value
     let sa = document.getElementById("sa").value
-    if (sa != "" && sb != "") {
-        submitData()
+    if (sa != "") {
+
         if (sa == checkSignature(yab, db, nb, ea, na)) {
-            alert("La signature est CORECTE")
+            alert("Le message est CORECTE")
         } else {
-            alert("La signature est INCORECTE")
+            alert("Le message est INCORECTE")
         }
     } else alert("Signature manquante")
 }
