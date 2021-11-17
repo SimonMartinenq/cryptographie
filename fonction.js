@@ -142,6 +142,13 @@ function checkInfoPrivate(n, e) {
     else return true
 }
 
+function checkInfo(n, e, d) {
+    if (!checkPrimeFactor(n)) return false
+    else if (pgcd(e, computeEuler(n)) != 1) return false
+    else if (mod(e * d, computeEuler(n)) != 1) return false
+    else return true
+}
+
 
 //En réalité cela ne choisi pas au hasard mais le premier e possible
 function findRandomE(n) {
@@ -250,35 +257,33 @@ function submitData() {
     }
     //sujet A
     if (na != "") {
-        if (ea != "") {
+        if (ea != "" && da == "") {
             alert("Les informations de A sont correctes: " + checkInfoPrivate(na, ea))
             document.getElementById("da").value = guessKey(ea, na)
-        } else if (da != "") {
+        } else if (da != "" && ea == "") {
             alert("Les informations de A sont correctes: " + checkInfoPublic(na, da))
             document.getElementById("ea").value = guessPriveKey(da, na)
         } else {
-            alert("Les informations de A sont correctes: " + checkInfoPublic(nb, db))
+            alert("Les informations de A sont correctes: " + checkInfo(na, ea, da))
         }
 
     }
     //sujet B
     if (nb != "") {
-        if (eb != "") {
+        if (eb != "" && db == "") {
             alert("Les informations de B sont correctes: " + checkInfoPrivate(nb, eb))
             document.getElementById("db").value = guessKey(eb, nb)
-        } else if (db != "") {
+        } else if (db != "" && eb == "") {
             alert("Les informations de B sont correctes: " + checkInfoPublic(nb, db))
             document.getElementById("eb").value = guessKey(db, nb)
         } else {
-            alert("Les informations de B sont correctes: " + checkInfoPublic(nb, db))
+            alert("Les informations de B sont correctes: " + checkInfo(nb, eb, db))
         }
     }
 }
-
-
 buttonSubmitData.onclick = submitData
     //DECRYPTER ET CRYPTER RSA 
-    //code redandant mais j'ai pas envie de me prendre la tête
+    //code redondant mais j'ai pas envie de me prendre la tête
 buttonASend.onclick = function() {
     submitData()
     let nb = document.getElementById("nb").value
