@@ -262,7 +262,7 @@ function submitData() {
             document.getElementById("da").value = guessKey(ea, na)
         } else if (da != "" && ea == "") {
             alert("Les informations de A sont correctes: " + checkInfoPublic(na, da))
-            document.getElementById("ea").value = guessPriveKey(da, na)
+            document.getElementById("ea").value = guessKey(da, na)
         } else {
             alert("Les informations de A sont correctes: " + checkInfo(na, ea, da))
         }
