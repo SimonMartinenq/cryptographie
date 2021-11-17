@@ -16,9 +16,7 @@
         <nav class="displayFlex">
             <a href="accueil.html"><img src="logo.png" alt="logo" id="logo"></a>
             <ul id="nav_bar_liste">
-                <li>
-                    <a href="accueil.html" class="button_topnavbar">Accueil</a>
-                </li>
+
                 <li>
                     <a href="chapitre1.html" class="button_topnavbar">Chapitre 1</a>
                 </li>
@@ -91,13 +89,15 @@
                                 <input type="number" name="sb" id="sb">
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="3">
+                                <input type="button" id="submitData" value="Check DATA">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="center">
-                <button type="submit" id="submitData">Check data</button>
-            </div>
-            <div>
+            <div id="questionRSA">
                 <form action="" method="get">
                     <div id="divCryptage" class="center_interligne">
                         <div>
@@ -223,6 +223,9 @@
 
 
         </section>
+        <div id="nsmResponsive">
+            <p>Flemme du responsive</p>
+        </div>
     </main>
 
     <script src="fonction.js"></script>
