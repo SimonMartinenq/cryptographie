@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <title>Chapitre 1</title>
+    <link rel="stylesheet" href="/cryptographie/static/main.css">
+    <title>Chapitre 4</title>
 </head>
 
 <body>
     <header class="header_container">
         <nav class="displayFlex">
-            <a href="accueil.html"><img src="logo.png" alt="logo" id="logo"></a>
+            <a href="accueil.html"><img src="/cryptographie/static/logo.png" alt="logo" id="logo"></a>
             <ul id="nav_bar_liste">
                 <li>
                     <a href="accueil.html" class="button_topnavbar">Accueil</a>
@@ -26,42 +26,63 @@
                 <li>
                     <a href="chapitre3.html" class="button_topnavbar">Chapitre 3</a>
                 </li>
+                <li>
+                    <a href="chapitre4.html" class="button_topnavbar">Chapitre 4</a>
+                </li>
             </ul>
             <div id="menu-button" class="close"></div>
         </nav>
     </header>
     <main>
+
         <section class="colgauche">
-            En cours de dev, voir Chapitre 3
+
         </section>
+
         <section class="coldroite">
 
 
             <div>
                 <p>Compute Euler</p>
-                <label for="nEuler">n: </label>
-                <input type="number" name="nEuler" id="nEuler">
-                <input type="button" value="Compute Euler" id="computeEulerButton">
+                <form action="get">
+                    <div>
+                        <label for="nEuler">n: </label>
+                        <input type="number" name="nEuler" id="nEuler">
+                    </div>
+                    <div>
+                        <input type="button" value="Compute Euler" id="computeEulerButton">
+                    </div>
+                </form>
+
+
             </div>
 
 
             <div>
                 <p>Compute Euler puissance</p>
-                <label for="nombrePuissance">nombre: </label>
-                <input type="number" name="nombrePuissance" id="nombrePuissance">
+                <form action="get">
+                    <div>
+                        <label for="nombrePuissance">nombre: </label>
+                        <input type="number" name="nombrePuissance" id="nombrePuissance">
+                    </div>
+                    <div>
+                        <label for="puissance">puissance: </label>
+                        <input type="number" name="puissance" id="puissance">
+                    </div>
 
-                <label for="puissance">puissance: </label>
-                <input type="number" name="puissance" id="puissance">
-
-                <label for="moduloEuler">modulo: </label>
-                <input type="number" name="moduloEuler" id="moduloEuler">
-
-                <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
+                    <div>
+                        <label for="moduloEuler">modulo: </label>
+                        <input type="number" name="moduloEuler" id="moduloEuler">
+                    </div>
+                    <div>
+                        <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
+                    </div>
+                </form>
             </div>
 
 
 
-            <div>
+            <!--  <div>
                 <p>Trouver l'inverse d'un nombre</p>
                 <label for="nInverer">Nombre à inverser: </label>
                 <input type="number" name="nInverer" id="nInverer">
@@ -70,7 +91,7 @@
                 <input type="number" name="modInverser" id="modInverser">
 
                 <input type="button" value="Inverser" id="buttonNInverser">
-            </div>
+            </div> -->
 
 
             <div>
@@ -91,6 +112,7 @@
         </section>
     </main>
 
+    <script src="/cryptographie/utils/fonction.js"></script>
 </body>
 
 </html>

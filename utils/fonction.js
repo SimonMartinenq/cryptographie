@@ -92,7 +92,7 @@ function puissance(nombre, exposant, modulo) {
     return count
 }
 
-function facteur(n) {
+function primeFacor(n) {
     let decompose = []
     let d = 2
     let i = 0
@@ -106,8 +106,20 @@ function facteur(n) {
     return decompose
 }
 
+function factor(n) {
+    let decompose = []
+    let j = 0
+    for (let i = 1; i <= n; i++) {
+        if (n % i == 0) {
+            decompose[j] = i
+            j++
+        }
+    }
+    return decompose
+}
+
 function checkPrimeFactor(n) {
-    let decompose = facteur(n)
+    let decompose = primeFacor(n)
     let isFactor = true
     for (let i = 0; i < decompose.length; i++) {
         for (let j = i + 1; j < decompose.length; j++) {
@@ -281,6 +293,46 @@ function submitData() {
         }
     }
 }
+
+
+
+/* CHAPITRE 4 */
+/* EN COURS DE TRAVAIL = MARCHE PAS */
+/* function checkGenerator(g, n) {
+    ////determine the order
+    //max k
+    let maxK = computeEuler(n)
+    console.log("maxk = " + maxK)
+    let factors = factor(maxK)
+    console.log("facteurs = " + factors)
+    let isGenerator = false;
+    factors.forEach(element => {
+        if (puissance(g, element, n) == 1 && element == maxK) {
+            console.log(puissance(g, element, n) + " " + element)
+            isGenerator = true
+        }
+    });
+    return isGenerator
+} */
+
+
+function cipherElgamal(g, x, eReceveur, n) {
+    //choisir k au hasard
+    const k = Math.floor(Math.random() * (n - 1)) + 1
+    const r = puissance(g, k, n)
+    const y = mod(x * puissance(eReceveur, k, n), n)
+    return [r, y]
+}
+
+function decipherElgamal(r, y, dReceveur, n) {
+    let step1 = puissance(r, dReceveur, n)
+    console.log(step1)
+    let step2 = calculateInverse(step1, n)
+    console.log(step1)
+    return mod(y * step2, n)
+}
+
+
 buttonSubmitData.onclick = submitData
     //DECRYPTER ET CRYPTER RSA 
     //code redondant mais j'ai pas envie de me prendre la tête
