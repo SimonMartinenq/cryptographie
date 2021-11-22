@@ -298,7 +298,7 @@ function submitData() {
 
 /* CHAPITRE 4 */
 /* EN COURS DE TRAVAIL = MARCHE PAS */
-/* function checkGenerator(g, n) {
+function checkGenerator(g, n) {
     ////determine the order
     //max k
     let maxK = computeEuler(n)
@@ -313,7 +313,7 @@ function submitData() {
         }
     });
     return isGenerator
-} */
+}
 
 
 function cipherElgamal(g, x, eReceveur, n) {
@@ -330,6 +330,20 @@ function decipherElgamal(r, y, dReceveur, n) {
     let step2 = calculateInverse(step1, n)
     console.log(step1)
     return mod(y * step2, n)
+}
+
+function findPublicKeyElgamal(g, d, n) {
+    return puissance(g, d, n)
+}
+
+function findPrivateElgamal(e, g, n) {
+    let tmp
+    let i = 1
+    while (tmp != e) {
+        tmp = puissance(g, i, n)
+        i++
+    }
+    return i - 1
 }
 
 
