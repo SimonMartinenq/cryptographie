@@ -169,52 +169,6 @@ function translateNumToMot(num, alphabet) {
     return mot
 }
 
-
-
-//check data et guess key privé
-function submitData() {
-    let p = document.getElementById("p").value
-    let g = document.getElementById("g").value
-    let ea = document.getElementById("ea").value
-    let eb = document.getElementById("eb").value
-    let da = document.getElementById("da").value
-    let db = document.getElementById("db").value
-
-    if (p == "" && g == "") {
-        alert("Il manque des informations")
-    } else if (!checkGenerator(g, p)) {
-        alert(g + "n'est pas un générateur")
-    } else {
-        //sujet A
-        if (ea != "" && da == "") {
-            alert("Les informations de A sont correctes: " + checkInfoPrivate(na, ea))
-            document.getElementById("da").value = guessKey(ea, na)
-        } else if (da != "" && ea == "") {
-            alert("Les informations de A sont correctes: " + checkInfoPublic(na, da))
-            document.getElementById("ea").value = guessKey(da, na)
-        } else {
-            alert("Les informations de A sont correctes: " + checkInfo(na, ea, da))
-        }
-
-
-        //sujet B
-
-        if (eb != "" && db == "") {
-            alert("Les informations de B sont correctes: " + checkInfoPrivate(nb, eb))
-            document.getElementById("db").value = guessKey(eb, nb)
-        } else if (db != "" && eb == "") {
-            alert("Les informations de B sont correctes: " + checkInfoPublic(nb, db))
-            document.getElementById("eb").value = guessKey(db, nb)
-        } else {
-            alert("Les informations de B sont correctes: " + checkInfo(nb, eb, db))
-        }
-    }
-
-
-}
-
-
-
 /* CHAPITRE 4 */
 /* EN COURS DE TRAVAIL = MARCHE PAS */
 function checkGenerator(g, n) {
@@ -235,9 +189,45 @@ function checkGenerator(g, n) {
 }
 
 
-function cipherElgamal(g, x, eReceveur, n) {
+//check data et guess key privé
+function submitData() {
+    let p = document.getElementById("p").value
+    let g = document.getElementById("g").value
+    let ea = document.getElementById("ea").value
+    let eb = document.getElementById("eb").value
+    let da = document.getElementById("da").value
+    let db = document.getElementById("db").value
+
+    if (p == "" && g == "") {
+        alert("Il manque des informations")
+    } else if (!checkGenerator(g, p)) {
+        alert(g + " n'est pas un générateur")
+    } else {
+        alert("data are ok")
+            //sujet A
+        if (ea != "" && da == "") {
+            document.getElementById("da").value = findPrivateElgamal(ea, g, p)
+        } else if (da != "" && ea == "") {
+            document.getElementById("ea").value = findPublicKeyElgamal(g, da, p)
+        }
+
+        //sujet B
+        if (eb != "" && db == "") {
+            document.getElementById("db").value = findPrivateElgamal(eb, g, p)
+        } else if (db != "" && eb == "") {
+            document.getElementById("eb").value = findPublicKeyElgamal(g, db, p)
+        }
+    }
+
+
+}
+
+
+
+function cipherElgamal(g, x, eReceveur, n, k) {
     //choisir k au hasard
-    const k = Math.floor(Math.random() * (n - 1)) + 1
+    //const k = Math.floor(Math.random() * (n - 1)) + 1
+
     const r = puissance(g, k, n)
     const y = mod(x * puissance(eReceveur, k, n), n)
     return [r, y]
@@ -269,36 +259,45 @@ function findPrivateElgamal(e, g, n) {
 buttonSubmitData.onclick = submitData
     //DECRYPTER ET CRYPTER RSA 
     //code redondant mais j'ai pas envie de me prendre la tête
+
 buttonASend.onclick = function() {
     submitData()
-    let nb = document.getElementById("nb").value
+    let g = document.getElementById("g").value
+    let k = document.getElementById("k").value
     let eb = document.getElementById("eb").value
-    let plaintext = document.getElementById("plaintext").value
-    document.getElementById("ciphertext").value = cipherRSAInt(plaintext, eb, nb)
+    let p = document.getElementById("p").value
+    let x = document.getElementById("x").value
+    document.getElementById("r").value = cipherElgamal(g, x, eb, p, k)[0]
+    document.getElementById("y").value = cipherElgamal(g, x, eb, p, k)[1]
 }
 
 buttonBSend.onclick = function() {
     submitData()
-    let na = document.getElementById("na").value
+    let g = document.getElementById("g").value
+    let k = document.getElementById("k").value
     let ea = document.getElementById("ea").value
-    let plaintext = document.getElementById("plaintext").value
-    document.getElementById("ciphertext").value = cipherRSAInt(plaintext, ea, na)
+    let p = document.getElementById("p").value
+    let x = document.getElementById("x").value
+    document.getElementById("r").value = cipherElgamal(g, x, ea, p, k)[0]
+    document.getElementById("y").value = cipherElgamal(g, x, ea, p, k)[1]
 }
 
 buttonAReceives.onclick = function() {
     submitData()
-    let na = document.getElementById("na").value
+    let r = document.getElementById("r").value
     let da = document.getElementById("da").value
-    let ciphertext = document.getElementById("ciphertext").value
-    document.getElementById("plaintext").value = decipherRSAInt(ciphertext, da, na)
+    let p = document.getElementById("p").value
+    let y = document.getElementById("y").value
+    document.getElementById("x").value = decipherElgamal(r, y, da, p)
 }
 
 buttonBReceives.onclick = function() {
     submitData()
-    let nb = document.getElementById("nb").value
+    let r = document.getElementById("r").value
     let db = document.getElementById("db").value
-    let ciphertext = document.getElementById("ciphertext").value
-    document.getElementById("plaintext").value = decipherRSAInt(ciphertext, db, nb)
+    let p = document.getElementById("p").value
+    let y = document.getElementById("y").value
+    document.getElementById("x").value = decipherElgamal(r, y, db, p)
 }
 
 buttonASendSignature.onclick = function() {
@@ -403,14 +402,4 @@ buttonResoudreEquation.onclick = function() {
         alert("x = " + solveEq(p, y, modEq))
     }
 
-}
-
-//1) mettre l'alphabet automatique 
-//2) fait en sorte qu'avec l'alphabet sa fonction 
-buttonDecipherPenta.onclick = function() {
-    let number = document.getElementById("messageToDecipher").value
-    let na = document.getElementById("na").value
-    let da = document.getElementById("da").value
-        //let alphabet = document.getElementById("alphabet").value
-    alert(deciferRSAPenta(number, da, na, "abcdefghijklmnopqrstuvwxyz ."))
 }
