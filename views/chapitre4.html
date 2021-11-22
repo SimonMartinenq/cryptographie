@@ -51,17 +51,18 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td rowspan="2">Public key</td>
-                            <td>
-                                <label for="na">Na = </label>
-                                <input type="number" name="na" id="na">
-                            </td>
-                            <td>
-                                <label for="nb">Nb = </label>
-                                <input type="number" name="nb" id="nb">
+                            <td>Public domain</td>
+                            <td colspan="2">
+                                <label for="p">p = </label>
+                                <input type="number" name="p" id="p">
+
+
+                                <label for="g">g = </label>
+                                <input type="number" name="g" id="g">
                             </td>
                         </tr>
                         <tr>
+                            <td>Public key</td>
                             <td>
                                 <label for="ea">Ea = </label>
                                 <input type="number" name="ea" id="ea">
@@ -226,7 +227,9 @@
         </section>
     </main>
 
-    <script src="/cryptographie/utils/fonction.js"></script>
+
+    <script src="/cryptographie/utils/chap4.js"></script>
+
 </body>
 
 </html>
