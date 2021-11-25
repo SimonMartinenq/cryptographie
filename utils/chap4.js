@@ -106,6 +106,7 @@ function primeFacor(n) {
     return decompose
 }
 
+//liste les diviseurs de n
 function factor(n) {
     let decompose = []
     let j = 0
@@ -170,24 +171,62 @@ function translateNumToMot(num, alphabet) {
 }
 
 /* CHAPITRE 4 */
-/* EN COURS DE TRAVAIL = MARCHE PAS */
-function checkGenerator(g, n) {
-    ////determine the order
-    //max k
-    let maxK = computeEuler(n)
-    console.log("maxk = " + maxK)
-    let factors = factor(maxK)
-    console.log("facteurs = " + factors)
-    let isGenerator = false;
-    factors.forEach(element => {
-        if (puissance(g, element, n) == 1 && element == maxK) {
-            console.log(puissance(g, element, n) + " " + element)
-            isGenerator = true
+
+//determine l'order d'un nombre ex : Ord(2) dans Z/19Z = 18
+function order(number, modulo) {
+    if (number == 1) {
+        return 1
+    } else {
+        let listOrdersPossible = factor(computeEuler(modulo))
+            //enlever le 1 du debut
+        let tmp = listOrdersPossible.reverse()
+        tmp.pop()
+        listOrdersPossible = tmp.reverse()
+        for (const ordre of listOrdersPossible) {
+            if (puissance(number, ordre, modulo) == 1) return ordre
         }
-    });
-    return isGenerator
+    }
+
 }
 
+//trouver les générateurs d'une classe
+function findGenerator(n) {
+    let elements = []
+    let orderElements = []
+        //création de deux tableaux elements et leurs ordres
+
+    for (let i = 1; i < computeEuler(n); i++) {
+        elements.push(i)
+        orderElements.push(order(i, n))
+    }
+    // pour ensuite reperer le ou les éléments avec le plus grand ordre
+    // qui sont le ou les générateurs
+    //trouver le max
+    let max = 0
+    for (const maxPointer of orderElements) {
+        if (maxPointer > max) max = maxPointer
+    }
+
+    let generator = []
+    for (let i = 0; i < elements.length; i++) {
+        if (orderElements[i] == max) {
+            generator.push(elements[i])
+        }
+
+    }
+    return generator
+}
+
+//déterminer si un nombre est générateur d'une classe
+function isGenerator(g, n) {
+    let generators = findGenerator(n)
+    for (const tmp of generators) {
+        if (g == tmp) {
+            return true
+        }
+    }
+    return false
+}
 
 //check data et guess key privé
 function submitData() {
@@ -200,7 +239,7 @@ function submitData() {
 
     if (p == "" && g == "") {
         alert("Il manque des informations")
-    } else if (!checkGenerator(g, p)) {
+    } else if (!isGenerator(g, p)) {
         alert(g + " n'est pas un générateur")
     } else {
         alert("data are ok")
@@ -257,8 +296,7 @@ function findPrivateElgamal(e, g, n) {
 
 
 buttonSubmitData.onclick = submitData
-    //DECRYPTER ET CRYPTER RSA 
-    //code redondant mais j'ai pas envie de me prendre la tête
+
 
 buttonASend.onclick = function() {
     submitData()
@@ -267,6 +305,7 @@ buttonASend.onclick = function() {
     let eb = document.getElementById("eb").value
     let p = document.getElementById("p").value
     let x = document.getElementById("x").value
+    console.log(cipherElgamal(g, x, eb, p, k))
     document.getElementById("r").value = cipherElgamal(g, x, eb, p, k)[0]
     document.getElementById("y").value = cipherElgamal(g, x, eb, p, k)[1]
 }
@@ -288,6 +327,7 @@ buttonAReceives.onclick = function() {
     let da = document.getElementById("da").value
     let p = document.getElementById("p").value
     let y = document.getElementById("y").value
+    console.log(decipherElgamal(r, y, da, p))
     document.getElementById("x").value = decipherElgamal(r, y, da, p)
 }
 
@@ -300,7 +340,7 @@ buttonBReceives.onclick = function() {
     document.getElementById("x").value = decipherElgamal(r, y, db, p)
 }
 
-buttonASendSignature.onclick = function() {
+/* buttonASendSignature.onclick = function() {
     submitData()
     let eb = document.getElementById("eb").value
     let da = document.getElementById("da").value
@@ -379,7 +419,7 @@ buttonComputeEulerPuissance.onclick = function() {
         alert("Le résultat est: " + puissance(n, p, modp))
     }
 }
-
+ */
 
 /* buttonNInverser.onclick = function() {
     let nInverer = document.getElementById("nInverer").value
@@ -391,7 +431,7 @@ buttonComputeEulerPuissance.onclick = function() {
     }
 } */
 
-buttonResoudreEquation.onclick = function() {
+/* buttonResoudreEquation.onclick = function() {
     let p = document.getElementById("pEquation").value
     let y = document.getElementById("yEquation").value
     let modEq = document.getElementById("modEquation").value
@@ -402,4 +442,26 @@ buttonResoudreEquation.onclick = function() {
         alert("x = " + solveEq(p, y, modEq))
     }
 
+}
+ */
+buttonCalculerOrdre.onclick = () => {
+    //let nombre = document.getElementById("numberOrder").value
+    let nombre = numberOrder.value
+    let modulo = document.getElementById("moduloOrder").value
+    alert(order(nombre, modulo))
+}
+
+isGeneratorButton.onclick = () => {
+    let g = document.getElementById("generator").value
+    let modulo = document.getElementById("moduloGenerator").value
+    if (g != "" || modulo != "") {
+        let reponse = isGenerator(g, modulo)
+        if (reponse) alert(g + " EST un générateur de " + modulo)
+        else alert(g + " N'EST PAS un générateur de " + modulo)
+    }
+}
+
+listGeneratorButton.onclick = () => {
+    let modulo = document.getElementById("moduloGenerator").value
+    alert("The generator(s) of " + modulo + " : " + findGenerator(modulo))
 }

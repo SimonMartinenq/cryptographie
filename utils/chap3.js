@@ -296,57 +296,6 @@ function submitData() {
 
 
 
-/* CHAPITRE 4 */
-/* EN COURS DE TRAVAIL = MARCHE PAS */
-function checkGenerator(g, n) {
-    ////determine the order
-    //max k
-    let maxK = computeEuler(n)
-    console.log("maxk = " + maxK)
-    let factors = factor(maxK)
-    console.log("facteurs = " + factors)
-    let isGenerator = false;
-    factors.forEach(element => {
-        if (puissance(g, element, n) == 1 && element == maxK) {
-            console.log(puissance(g, element, n) + " " + element)
-            isGenerator = true
-        }
-    });
-    return isGenerator
-}
-
-
-function cipherElgamal(g, x, eReceveur, n) {
-    //choisir k au hasard
-    const k = Math.floor(Math.random() * (n - 1)) + 1
-    const r = puissance(g, k, n)
-    const y = mod(x * puissance(eReceveur, k, n), n)
-    return [r, y]
-}
-
-function decipherElgamal(r, y, dReceveur, n) {
-    let step1 = puissance(r, dReceveur, n)
-    console.log(step1)
-    let step2 = calculateInverse(step1, n)
-    console.log(step1)
-    return mod(y * step2, n)
-}
-
-function findPublicKeyElgamal(g, d, n) {
-    return puissance(g, d, n)
-}
-
-function findPrivateElgamal(e, g, n) {
-    let tmp
-    let i = 1
-    while (tmp != e) {
-        tmp = puissance(g, i, n)
-        i++
-    }
-    return i - 1
-}
-
-
 buttonSubmitData.onclick = submitData
     //DECRYPTER ET CRYPTER RSA 
     //code redondant mais j'ai pas envie de me prendre la tête

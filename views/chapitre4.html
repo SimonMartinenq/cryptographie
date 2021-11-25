@@ -137,28 +137,40 @@
                             <input type="button" value="B send signature" id="bSendSignature">
                         </div>
                     </div>
-                    <div class="center_interligne">
-                        <div>
-
-                            <p>Exchange message with message unit : the pentagrams</p>
-
-                            <label for="messageToDecipher">Message to decipher: </label>
-                            <input type="text" name="messageToDecipher" id="messageToDecipher">
-                        </div>
-                        <div>
-                            <label for="alphabet">Alphabet: </label>
-                            <input type="text" name="alphabet" id="alphabet">
-                        </div>
-                        <div>
-                            <input type="button" value="A decipher B's message" id="buttonDecipherPenta">
-                        </div>
-                    </div>
                 </form>
             </div>
         </section>
 
         <section class="coldroite">
-
+            <div>
+                <p>Calucler l'ordre d'un noombre:</p>
+                <form action="get">
+                    <div>
+                        <label for="numberOrder">nombre: </label>
+                        <input type="number" name="numberOrder" id="numberOrder"><br>
+                        <label for="numberOrder">modulo: </label>
+                        <input type="number" name="moduloOrder" id="moduloOrder">
+                    </div>
+                    <div>
+                        <input type="button" value="Calculer l'ordre" id="buttonCalculerOrdre">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <p>Générateur:</p>
+                <form action="get">
+                    <div>
+                        <label for="generator">g: </label>
+                        <input type="number" name="generator" id="generator">
+                        <label for="moduloGenerator">modulo: </label>
+                        <input type="number" name="moduloGenerator" id="moduloGenerator">
+                    </div>
+                    <div>
+                        <input type="button" value="is generator ?" id="isGeneratorButton">
+                        <input type="button" value="list of generators" id="listGeneratorButton">
+                    </div>
+                </form>
+            </div>
 
             <div>
                 <p>Compute Euler</p>
