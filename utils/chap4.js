@@ -75,7 +75,7 @@ function calculateInverse(a, modulo) {
             i += 1
         }
         return vk[i - 2]
-    } else return -1
+    } else return -666
 }
 
 //Math.pow ne prend pas en compte le modulo
