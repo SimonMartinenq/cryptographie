@@ -192,7 +192,7 @@ function order(number, modulo) {
 function findGenerator(n) {
     let elements = []
     let orderElements = []
-        //création de deux tableaux elements et leurs ordres
+        //création d'un tableaux  avec deux lignes : elements et leurs ordres
 
     for (let i = 1; i < computeEuler(n); i++) {
         elements.push(i)
