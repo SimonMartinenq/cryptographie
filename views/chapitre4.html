@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/main.css">
+    <link rel="stylesheet" href="../static/chapitre4.css">
+    <title>Chapitre 4</title>
+</head>
+
+<body>
+    <header class="header_container">
+        <nav class="displayFlex">
+            <a href="accueil.html"><img src="../static/logo.png" alt="logo" id="logo"></a>
+            <ul id="nav_bar_liste">
+                <li>
+                    <a href="chapitre1.html" class="button_topnavbar">Chapitre 1</a>
+                </li>
+                <li>
+                    <a href="chapitre2.html" class="button_topnavbar">Chapitre 2</a>
+                </li>
+                <li>
+                    <a href="chapitre3.html" class="button_topnavbar">Chapitre 3</a>
+                </li>
+                <li>
+                    <a href="chapitre4.html" class="button_topnavbar">Chapitre 4</a>
+                </li>
+            </ul>
+            <div id="menu-button" class="close"></div>
+        </nav>
+    </header>
+    <main>
+
+        <section class="colgauche">
+            <div class="center">
+                <table id="tableData">
+                    <thead>
+                        <tr>
+                            <th colspan="3" id="titleData">DATA</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Sujet A</td>
+                            <td>Sujet B</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Public domain</td>
+                            <td colspan="2">
+                                <label for="pTable">p = </label>
+                                <input type="number" name="pTable" id="pTable"><br>
+                                <label for="qTable">q = </label>
+                                <input type="number" name="qTable" id="qTable"><br>
+                                <label for="gTable">g = </label>
+                                <input type="number" name="gTable" id="gTable">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Public key</td>
+                            <td>
+                                <label for="eaTable">Ea = </label>
+                                <input type="numberTable" name="eaTable" id="eaTable">
+                            </td>
+                            <td>
+                                <label for="ebTable">Eb = </label>
+                                <input type="number" name="ebTable" id="ebTable">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Private key</td>
+                            <td>
+                                <label for="daTable">Da = </label>
+                                <input type="numberTable" name="daTable" id="daTable">
+                            </td>
+                            <td>
+                                <label for="dbTable">Db = </label>
+                                <input type="number" name="dbTable" id="dbTable">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Signature</td>
+                            <td>
+                                <label for="saTable">Sa = </label>
+                                <input type="number" name="saTable" id="saTable">
+                            </td>
+                            <td>
+                                <label for="sbTable">Sb = </label>
+                                <input type="number" name="sbTable" id="sbTable">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="center">
+                <button type="submit" id="submitData">Check data</button>
+            </div>
+            <div>
+                <form action="" method="get">
+                    <div id="divCryptage" class="center_interligne">
+                        <div>
+                            <label for="plaintext">plaintext: </label>
+                            <input type="text" name="xCryptage" id="xCryptage" placeholder="entrer x">
+                            <input type="text" name="kCryptage" id="kCryptage" placeholder="entrer k">
+                        </div>
+                        <div>
+                            <label for="ciphertext">ciphertext: </label>
+                            <input type="text" name="rCryptage" id="rCryptage" placeholder="entrer r">
+                            <input type="text" name="yCryptage" id="yCryptage" placeholder="entrer y">
+
+                        </div>
+                        <div>
+                            <input type="button" value="A wants to send plaintext, find ciphertext" id="aSend">
+                            <input type="button" value="A recives the ciphertext, find plaintext" id="aReceives">
+                            <input type="button" value="B wants to send plaintext, find ciphertext" id="bSend">
+                            <input type="button" value="B recives the ciphertext, find plaintext" id="bReceives">
+                        </div>
+                    </div>
+                    <div id="divSignature" class="center_interligne">
+                        <div>
+                            <label for="messageToSend">Signature to send: </label>
+                            <input type="text" name="messageToSend" id="messageToSend">
+                        </div>
+                        <div>
+                            <label for="ciphertext">Message to check: </label>
+                            <input type="text" name="rSignature" id="rSignature" placeholder="entrer r">
+                            <input type="text" name="ySignature" id="ySignature" placeholder="entrer y">
+
+                        </div>
+                        <div>
+                            <input type="button" value="A check B's signature" id="aCheck">
+                            <input type="button" value="B check B's signature" id="bCheck">
+                            <input type="button" value="A send signature" id="aSendSignature">
+                            <input type="button" value="B send signature" id="bSendSignature">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="coldroite">
+            <div>
+                <p>Calucler l'ordre d'un noombre:</p>
+                <form action="get">
+                    <div>
+                        <label for="numberOrder">nombre: </label>
+                        <input type="number" name="numberOrder" id="numberOrder"><br>
+                        <label for="numberOrder">modulo: </label>
+                        <input type="number" name="moduloOrder" id="moduloOrder">
+                    </div>
+                    <div>
+                        <input type="button" value="Calculer l'ordre" id="buttonCalculerOrdre">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <p>Générateur:</p>
+                <form action="get">
+                    <div>
+                        <label for="generator">g: </label>
+                        <input type="number" name="generator" id="generator">
+                        <label for="moduloGenerator">modulo: </label>
+                        <input type="number" name="moduloGenerator" id="moduloGenerator">
+                    </div>
+                    <div>
+                        <input type="button" value="is generator ?" id="isGeneratorButton">
+                        <input type="button" value="list of generators" id="listGeneratorButton">
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <p>Compute Euler</p>
+                <form action="get">
+                    <div>
+                        <label for="nEuler">n: </label>
+                        <input type="number" name="nEuler" id="nEuler">
+                    </div>
+                    <div>
+                        <input type="button" value="Compute Euler" id="computeEulerButton">
+                    </div>
+                </form>
+
+
+            </div>
+
+
+            <div>
+                <p>Compute Euler puissance</p>
+                <form action="get">
+                    <div>
+                        <label for="nombrePuissance">nombre: </label>
+                        <input type="number" name="nombrePuissance" id="nombrePuissance">
+                    </div>
+                    <div>
+                        <label for="puissance">puissance: </label>
+                        <input type="number" name="puissance" id="puissance">
+                    </div>
+
+                    <div>
+                        <label for="moduloEuler">modulo: </label>
+                        <input type="number" name="moduloEuler" id="moduloEuler">
+                    </div>
+                    <div>
+                        <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <p>Trouver l'inverse d'un nombre</p>
+                <label for="nInverer">Nombre à inverser: </label>
+                <input type="number" name="nInverer" id="nInverer">
+
+                <label for="modInverser">Modulo: </label>
+                <input type="number" name="modInverser" id="modInverser">
+
+                <input type="button" value="Inverser" id="buttonNInverser">
+            </div>
+
+
+            <!-- <div>
+                <p> Résoudre l'équation du type : x^p = y in Z/mZ</p>
+                <label for="pEquation">p: </label>
+                <input type="number" name="pEquation" id="pEquation">
+
+                <label for="yEquation">y: </label>
+                <input type="number" name="yEquation" id="yEquation">
+
+                <label for="modEquation">Modulo: </label>
+                <input type="number" name="modEquation" id="modEquation">
+
+                <input type="button" value="Résoudre" id="buttonResoudreEquation">
+            </div>  -->
+
+
+        </section>
+    </main>
+
+
+    <script src="../utils/chap4.js"></script>
+
+</body>
+
+</html>

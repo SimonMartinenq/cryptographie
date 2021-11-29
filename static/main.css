@@ -1,0 +1,108 @@
+body {
+    background-color: silver;
+    color: black;
+    padding: opx;
+    margin: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    background-size: cover;
+}
+
+.displayFlex {
+    display: flex;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* 
+.center_interligne {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+} */
+
+
+/* HEADER */
+
+#logo {
+    height: 70px;
+    width: 70px;
+    margin: 10%;
+}
+
+.header_container {
+    background-color: white;
+    margin: 0;
+    padding: 5px 5px;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+}
+
+#nav_bar_liste {
+    width: 90%;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#nav_bar_liste li {
+    text-align: center;
+    display: inline;
+    float: left;
+    padding: 5px 2%;
+    font-size: medium;
+}
+
+.button_topnavbar {
+    color: black;
+    padding: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.button_topnavbar:hover {
+    color: rosybrown;
+}
+
+
+/* collones */
+
+.coldroite {
+    float: right;
+    width: 23%;
+    padding: 2%;
+    border-left: solid white;
+}
+
+#computeEulerButton,
+#computeEulerPuissanceButton,
+#buttonNInverser,
+#buttonResoudreEquation {
+    cursor: pointer;
+}
+
+.colgauche {
+    overflow: hidden;
+    float: left;
+    width: 65%;
+    padding: 2%;
+}
+
+.coldroite p {
+    font-size: 1.5em;
+}
+
+
+/* fromulaire classic */
