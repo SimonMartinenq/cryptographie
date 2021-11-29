@@ -16,6 +16,10 @@ body {
     justify-content: center;
 }
 
+input[type=button] {
+    cursor: pointer;
+}
+
 
 /* 
 .center_interligne {
@@ -81,7 +85,7 @@ body {
 
 .coldroite {
     float: right;
-    width: 23%;
+    width: 22%;
     padding: 2%;
     border-left: solid white;
 }
@@ -96,12 +100,22 @@ body {
 .colgauche {
     overflow: hidden;
     float: left;
-    width: 65%;
-    padding: 2%;
+    width: 60%;
+    margin-left: 7%;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 
 .coldroite p {
     font-size: 1.5em;
+}
+
+.coldroite input {
+    width: 35%;
+}
+
+html {
+    justify-content: space-around;
 }
 
 
