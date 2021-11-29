@@ -16,9 +16,6 @@
             <a href="accueil.html"><img src="../static/logo.png" alt="logo" id="logo"></a>
             <ul id="nav_bar_liste">
                 <li>
-                    <a href="accueil.html" class="button_topnavbar">Accueil</a>
-                </li>
-                <li>
                     <a href="chapitre1.html" class="button_topnavbar">Chapitre 1</a>
                 </li>
                 <li>
@@ -53,45 +50,45 @@
                         <tr>
                             <td>Public domain</td>
                             <td colspan="2">
-                                <label for="p">p = </label>
-                                <input type="number" name="p" id="p">
-
-
-                                <label for="g">g = </label>
-                                <input type="number" name="g" id="g">
+                                <label for="pTable">p = </label>
+                                <input type="number" name="pTable" id="pTable"><br>
+                                <label for="qTable">q = </label>
+                                <input type="number" name="qTable" id="qTable"><br>
+                                <label for="gTable">g = </label>
+                                <input type="number" name="gTable" id="gTable">
                             </td>
                         </tr>
                         <tr>
                             <td>Public key</td>
                             <td>
-                                <label for="ea">Ea = </label>
-                                <input type="number" name="ea" id="ea">
+                                <label for="eaTable">Ea = </label>
+                                <input type="numberTable" name="eaTable" id="eaTable">
                             </td>
                             <td>
-                                <label for="eb">Eb = </label>
-                                <input type="number" name="eb" id="eb">
+                                <label for="ebTable">Eb = </label>
+                                <input type="number" name="ebTable" id="ebTable">
                             </td>
                         </tr>
                         <tr>
                             <td>Private key</td>
                             <td>
-                                <label for="da">Da = </label>
-                                <input type="number" name="da" id="da">
+                                <label for="daTable">Da = </label>
+                                <input type="numberTable" name="daTable" id="daTable">
                             </td>
                             <td>
-                                <label for="db">Db = </label>
-                                <input type="number" name="db" id="db">
+                                <label for="dbTable">Db = </label>
+                                <input type="number" name="dbTable" id="dbTable">
                             </td>
                         </tr>
                         <tr>
                             <td>Signature</td>
                             <td>
-                                <label for="sa">Sa = </label>
-                                <input type="number" name="sa" id="sa">
+                                <label for="saTable">Sa = </label>
+                                <input type="number" name="saTable" id="saTable">
                             </td>
                             <td>
-                                <label for="sb">Sb = </label>
-                                <input type="number" name="sb" id="sb">
+                                <label for="sbTable">Sb = </label>
+                                <input type="number" name="sbTable" id="sbTable">
                             </td>
                         </tr>
                     </tbody>
@@ -105,13 +102,13 @@
                     <div id="divCryptage" class="center_interligne">
                         <div>
                             <label for="plaintext">plaintext: </label>
-                            <input type="text" name="x" id="x" placeholder="entrer x">
-                            <input type="text" name="k" id="k" placeholder="entrer k">
+                            <input type="text" name="xCryptage" id="xCryptage" placeholder="entrer x">
+                            <input type="text" name="kCryptage" id="kCryptage" placeholder="entrer k">
                         </div>
                         <div>
                             <label for="ciphertext">ciphertext: </label>
-                            <input type="text" name="r" id="r" placeholder="entrer r">
-                            <input type="text" name="y" id="y" placeholder="entrer y">
+                            <input type="text" name="rCryptage" id="rCryptage" placeholder="entrer r">
+                            <input type="text" name="yCryptage" id="yCryptage" placeholder="entrer y">
 
                         </div>
                         <div>
@@ -127,8 +124,10 @@
                             <input type="text" name="messageToSend" id="messageToSend">
                         </div>
                         <div>
-                            <label for="messageToCheck">Ciphered signature to check: </label>
-                            <input type="text" name="messageToCheck" id="messageToCheck">
+                            <label for="ciphertext">Message to check: </label>
+                            <input type="text" name="rSignature" id="rSignature" placeholder="entrer r">
+                            <input type="text" name="ySignature" id="ySignature" placeholder="entrer y">
+
                         </div>
                         <div>
                             <input type="button" value="A check B's signature" id="aCheck">
@@ -209,10 +208,7 @@
                     </div>
                 </form>
             </div>
-
-
-
-            <!--  <div>
+            <div>
                 <p>Trouver l'inverse d'un nombre</p>
                 <label for="nInverer">Nombre à inverser: </label>
                 <input type="number" name="nInverer" id="nInverer">
@@ -221,10 +217,10 @@
                 <input type="number" name="modInverser" id="modInverser">
 
                 <input type="button" value="Inverser" id="buttonNInverser">
-            </div> -->
+            </div>
 
 
-            <div>
+            <!-- <div>
                 <p> Résoudre l'équation du type : x^p = y in Z/mZ</p>
                 <label for="pEquation">p: </label>
                 <input type="number" name="pEquation" id="pEquation">
@@ -236,7 +232,7 @@
                 <input type="number" name="modEquation" id="modEquation">
 
                 <input type="button" value="Résoudre" id="buttonResoudreEquation">
-            </div>
+            </div>  -->
 
 
         </section>

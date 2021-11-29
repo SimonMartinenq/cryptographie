@@ -23,11 +23,11 @@ function isPrime(n) {
     if (n % (f + 2) == 0) return false
     return true
 }
-
+/* 
 function mod(a, n) {
     var m = ((a % n) + n) % n;
     return m < 0 ? m + Math.abs(n) : m;
-}
+} */
 
 function pgcd(a, b) {
     let rk = [a, b]
@@ -57,24 +57,24 @@ function calculateInverse(a, modulo) {
     let qk = [0, 0]
 
     if (pgcd(a, modulo) == 1) {
-        uk[0] = (1)
-        uk[1] = (0)
-        vk[0] = (0)
-        vk[1] = (1)
-        rk[0] = (modulo)
-        rk[1] = (a)
+        uk[0] = 1
+        uk[1] = 0
+        vk[0] = 0
+        vk[1] = 1
+        rk[0] = modulo
+        rk[1] = a
 
         stop = false
         let i = 2
         while (!stop) {
             rk[i] = rk[i - 2] % rk[i - 1]
             qk[i] = Math.floor(rk[i - 2] / rk[i - 1])
-            uk[i] = uk[i - 2] - qk[i] * uk[i - 1]
-            vk[i] = vk[i - 2] - qk[i] * vk[i - 1]
+            uk[i] = uk[i - 2] - (qk[i] * uk[i - 1])
+            vk[i] = vk[i - 2] - (qk[i] * vk[i - 1])
             if (rk[i] == 0) stop = true
             i += 1
         }
-        return mod(vk[i - 2], modulo)
+        return vk[i - 2]
     } else return -1
 }
 
@@ -170,7 +170,6 @@ function translateNumToMot(num, alphabet) {
     return mot
 }
 
-/* CHAPITRE 4 */
 
 //determine l'order d'un nombre ex : Ord(2) dans Z/19Z = 18
 function order(number, modulo) {
@@ -230,31 +229,33 @@ function isGenerator(g, n) {
 
 //check data et guess key privé
 function submitData() {
-    let p = document.getElementById("p").value
-    let g = document.getElementById("g").value
-    let ea = document.getElementById("ea").value
-    let eb = document.getElementById("eb").value
-    let da = document.getElementById("da").value
-    let db = document.getElementById("db").value
+    let p = pTable.value
+    let g = gTable.value
+    let ea = eaTable.value
+    let eb = ebTable.value
+    let da = daTable.value
+    let db = dbTable.value
 
     if (p == "" && g == "") {
         alert("Il manque des informations")
+        return 1 //erreur 
     } else if (!isGenerator(g, p)) {
         alert(g + " n'est pas un générateur")
+        return 1 //erreur
     } else {
         alert("data are ok")
             //sujet A
         if (ea != "" && da == "") {
-            document.getElementById("da").value = findPrivateElgamal(ea, g, p)
+            daTable.value = findPrivateElgamal(ea, g, p)
         } else if (da != "" && ea == "") {
-            document.getElementById("ea").value = findPublicKeyElgamal(g, da, p)
+            eaTable.value = findPublicKeyElgamal(g, da, p)
         }
 
         //sujet B
         if (eb != "" && db == "") {
-            document.getElementById("db").value = findPrivateElgamal(eb, g, p)
+            dbTable.value = findPrivateElgamal(eb, g, p)
         } else if (db != "" && eb == "") {
-            document.getElementById("eb").value = findPublicKeyElgamal(g, db, p)
+            ebTable.value = findPublicKeyElgamal(g, db, p)
         }
     }
 
@@ -262,22 +263,19 @@ function submitData() {
 }
 
 
-
 function cipherElgamal(g, x, eReceveur, n, k) {
     //choisir k au hasard
     //const k = Math.floor(Math.random() * (n - 1)) + 1
 
     const r = puissance(g, k, n)
-    const y = mod(x * puissance(eReceveur, k, n), n)
+    const y = (x * puissance(eReceveur, k, n)) % n
     return [r, y]
 }
 
 function decipherElgamal(r, y, dReceveur, n) {
     let step1 = puissance(r, dReceveur, n)
-    console.log(step1)
     let step2 = calculateInverse(step1, n)
-    console.log(step1)
-    return mod(y * step2, n)
+    return (y * step2) % n
 }
 
 function findPublicKeyElgamal(g, d, n) {
@@ -294,91 +292,111 @@ function findPrivateElgamal(e, g, n) {
     return i - 1
 }
 
+function sendSignature(g, k, p, dEnvoyeur, sEnvoyeur, q) {
+    const r = puissance(g, k, p)
+    const s = calculateInverse(k) * (sEnvoyeur + r * dEnvoyeur) % q
+    const yab = s * puissance(eReceveur, k, p) % p
+    return [r, yab]
+}
+
+function checkSignature(yab, r, dReceveur, p, q, sEnvoyeur, g, eEnvoyeur) {
+    const s = yab * calculateInverse(puissance(r, dReceveur, p), p) % p
+    const u1 = calculateInverse(s, q) * sEnvoyeur % q
+    const u2 = calculateInverse(s, q) * r % q
+    const r2 = puissance(g, u1, p) * puissance(eEnvoyeur, u2, p)
+    if (r == r2) return true
+    return false
+}
 
 buttonSubmitData.onclick = submitData
 
 
 buttonASend.onclick = function() {
     submitData()
-    let g = document.getElementById("g").value
-    let k = document.getElementById("k").value
-    let eb = document.getElementById("eb").value
-    let p = document.getElementById("p").value
-    let x = document.getElementById("x").value
-    console.log(cipherElgamal(g, x, eb, p, k))
-    document.getElementById("r").value = cipherElgamal(g, x, eb, p, k)[0]
-    document.getElementById("y").value = cipherElgamal(g, x, eb, p, k)[1]
+    const g = gTable.value
+    const k = kCryptage.value
+    const eb = ebTable.value
+    const n = pTable.value
+    const x = xCryptage.value
+    document.getElementById("rCryptage").value = cipherElgamal(g, x, eb, n, k)[0]
+    document.getElementById("yCryptage").value = cipherElgamal(g, x, eb, n, k)[1]
+
+
 }
 
 buttonBSend.onclick = function() {
     submitData()
-    let g = document.getElementById("g").value
-    let k = document.getElementById("k").value
-    let ea = document.getElementById("ea").value
-    let p = document.getElementById("p").value
-    let x = document.getElementById("x").value
-    document.getElementById("r").value = cipherElgamal(g, x, ea, p, k)[0]
-    document.getElementById("y").value = cipherElgamal(g, x, ea, p, k)[1]
+    const g = gTable.value
+    const k = kCryptage.value
+    const ea = eaTable.value
+    const p = pTable.value
+    const x = xCryptage.value
+    document.getElementById("rCryptage").value = cipherElgamal(g, x, ea, p, k)[0]
+    document.getElementById("yCryptage").value = cipherElgamal(g, x, ea, p, k)[1]
 }
 
 buttonAReceives.onclick = function() {
     submitData()
-    let r = document.getElementById("r").value
-    let da = document.getElementById("da").value
-    let p = document.getElementById("p").value
-    let y = document.getElementById("y").value
-    console.log(decipherElgamal(r, y, da, p))
-    document.getElementById("x").value = decipherElgamal(r, y, da, p)
+    const r = rCryptage.value
+    const y = yCryptage.value
+    const da = daTable.value
+    const p = pTable.value
+    document.getElementById("xCryptage").value = decipherElgamal(r, y, da, p)
 }
 
 buttonBReceives.onclick = function() {
-    submitData()
-    let r = document.getElementById("r").value
-    let db = document.getElementById("db").value
-    let p = document.getElementById("p").value
-    let y = document.getElementById("y").value
-    document.getElementById("x").value = decipherElgamal(r, y, db, p)
+    const r = rCryptage.value
+    const y = yCryptage.value
+    const db = dbTable.value
+    const p = pTable.value
+    document.getElementById("xCryptage").value = decipherElgamal(r, y, db, p)
 }
 
-/* buttonASendSignature.onclick = function() {
-    submitData()
-    let eb = document.getElementById("eb").value
-    let da = document.getElementById("da").value
-    let na = document.getElementById("na").value
-    let nb = document.getElementById("nb").value
-    let sa = document.getElementById("sa").value
-    if (sa != "") {
-        document.getElementById("messageToSend").value = sendSignature(na, da, sa, nb, eb)
-    } else alert("Signature manquante")
+buttonASendSignature.onclick = function() {
+    const erreur = submitData()
+    if (erreur != 1) {
+        const g = gTable.value
+        const k = kCryptage.value
+        const p = pTable.value
+        const da = daTable.value
+        const sa = saTable.value
+        const q = qTable.value
+        messageToSend.value = sendSignature(g, k, p, da, sa, q)
+    } else {
+        return 1
+    }
 }
 
 buttonBSendSignature.onclick = function() {
-    submitData()
-    let db = document.getElementById("db").value
-    let ea = document.getElementById("ea").value
-    let na = document.getElementById("na").value
-    let nb = document.getElementById("nb").value
-    let sb = document.getElementById("sb").value
-    if (sb != "") {
-        document.getElementById("messageToSend").value = sendSignature(nb, db, sb, na, ea)
-    } else alert("Signature manquante")
+    const erreur = submitData()
+    if (erreur != 1) {
+        const g = gTable.value
+        const k = kCryptage.value
+        const p = pTable.value
+        const db = dbTable.value
+        const sb = sbTable.value
+        const q = qTable.value
+        messageToSend.value = sendSignature(g, k, p, db, sb, q)
+    } else {
+        return 1
+    }
 }
 
 buttonACheck.onclick = function() {
-    submitData()
-    let yba = document.getElementById("messageToCheck").value
-    let da = document.getElementById("da").value
-    let na = document.getElementById("na").value
-    let eb = document.getElementById("eb").value
-    let nb = document.getElementById("nb").value
-    let sb = document.getElementById("sb").value
-    if (sb != "") {
-        if (sb == checkSignature(yba, da, na, eb, nb)) {
-            alert("Le message envoyé est CORECTE")
-        } else {
-            alert("Le message envoyé est INCORECTE")
-        }
-    } else alert("Signature manquante")
+    const erreur = submitData()
+    const yab = ySignature.value
+    const r = rSignature.value
+    const da = daTable.value
+    const p = pTable.value
+    const q = qTable.value
+    const sb = sbTable.value
+    const g = gTable.value
+    const eb = ebTable.value
+    if (erreur != 1) {
+        alert("La signature est : " + checkSignature(yab, r, da, p, q, sb, g, eb))
+    } else {
+        return 1
+    }
 }
 
 buttonBCheck.onclick = function() {
@@ -398,7 +416,6 @@ buttonBCheck.onclick = function() {
         }
     } else alert("Signature manquante")
 }
-
 buttonComputeEuler.onclick = function() {
     let n = document.getElementById("nEuler").value
     if (n == "") {
@@ -419,9 +436,8 @@ buttonComputeEulerPuissance.onclick = function() {
         alert("Le résultat est: " + puissance(n, p, modp))
     }
 }
- */
 
-/* buttonNInverser.onclick = function() {
+buttonNInverser.onclick = function() {
     let nInverer = document.getElementById("nInverer").value
     let modInverser = document.getElementById("modInverser").value
     if (nInverer == "" || modInverser == "") {
@@ -429,7 +445,7 @@ buttonComputeEulerPuissance.onclick = function() {
     } else {
         alert(calculateInverse(nInverer, modInverser))
     }
-} */
+}
 
 /* buttonResoudreEquation.onclick = function() {
     let p = document.getElementById("pEquation").value
