@@ -243,19 +243,30 @@ function submitData() {
         alert(g + " n'est pas un générateur")
         return 1 //erreur
     } else {
-        alert("data are ok")
-            //sujet A
-        if (ea != "" && da == "") {
+        //sujet A
+        if (ea != "" && da != "" && da == findPrivateElgamal(ea, g, p)) {
+            alert("Les informations de A sont CORRECTES")
+        } else if (ea != "" && da == "") {
             daTable.value = findPrivateElgamal(ea, g, p)
+            alert("Les informations de A sont CORRECTES")
         } else if (da != "" && ea == "") {
             eaTable.value = findPublicKeyElgamal(g, da, p)
+            alert("Les informations de A sont CORRECTES")
+        } else {
+            alert("Les informations de A sont INCORRECTES")
         }
 
         //sujet B
-        if (eb != "" && db == "") {
+        if (eb != "" && db != "" && db == findPrivateElgamal(eb, g, p)) {
+            alert("Les informations de B sont CORRECTES")
+        } else if (eb != "" && db == "") {
             dbTable.value = findPrivateElgamal(eb, g, p)
+            alert("Les informations de B sont CORRECTES")
         } else if (db != "" && eb == "") {
             ebTable.value = findPublicKeyElgamal(g, db, p)
+            alert("Les informations de B sont CORRECTES")
+        } else {
+            alert("Les informations de B sont INCORRECTES")
         }
     }
 
