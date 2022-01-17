@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/chap1.css">
     <link rel="stylesheet" href="../static/main.css">
+
     <title>Chapitre 1</title>
 </head>
 
@@ -31,66 +33,97 @@
         </nav>
     </header>
     <main>
-        <section class="colgauche">
-            En cours de dev, voir Chapitre 3
-        </section>
-        <section class="coldroite">
-
-
+        <section>
             <div>
-                <p>Compute Euler</p>
-                <label for="nEuler">n: </label>
-                <input type="number" name="nEuler" id="nEuler">
-                <input type="button" value="Compute Euler" id="computeEulerButton">
+                <h1>Determine if a number is prime</h1>
+                <label for="nbrPremier"> Enter a number:</label>
+                <input type="number" title="nbrPremier" id="nbrPremier">
+                <input type="button" value="GO" id="isPrimeButton">
             </div>
 
-
             <div>
-                <p>Compute Euler puissance</p>
-                <label for="nombrePuissance">nombre: </label>
-                <input type="number" name="nombrePuissance" id="nombrePuissance">
-
-                <label for="puissance">puissance: </label>
-                <input type="number" name="puissance" id="puissance">
-
-                <label for="moduloEuler">modulo: </label>
-                <input type="number" name="moduloEuler" id="moduloEuler">
-
-                <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
+                <h1>Compute PGCD</h1>
+                <label for="aPgcd"> Enter a:</label>
+                <input type="number" title="aPgcd">
+                <label for="bPgcd"> Enter b:</label>
+                <input type="number" title="bPgcd">
+                <input type="button" value="GO" id="pgcdButton">
             </div>
 
-
-
             <div>
-                <p>Trouver l'inverse d'un nombre</p>
-                <label for="nInverer">Nombre à inverser: </label>
-                <input type="number" name="nInverer" id="nInverer">
+                <h1>Determine the prime factorisation of a number, deduce the number of divisors</h1>
+                <label for="primeFactorisation">Enter a number</label>
+                <input type="number" title="primeFactorisation">
+                <input type="button" value="GO" id="factorisationButton">
 
-                <label for="modInverser">Modulo: </label>
-                <input type="number" name="modInverser" id="modInverser">
-
-                <input type="button" value="Inverser" id="buttonNInverser">
             </div>
 
-
             <div>
-                <p> Résoudre l'équation du type : x^p = y in Z/mZ</p>
-                <label for="pEquation">p: </label>
-                <input type="number" name="pEquation" id="pEquation">
+                <h1>Compute extended Euclidean algorithm</h1>
+                <table>
+                    <th scope="row" colspan="4"> extended Euclidean algorithm </th>
+                    <tr>
+                        <th scope="col">Uk</th>
+                        <th scope="col">Vk</th>
+                        <th scope="col">Rk</th>
+                        <th scope="col">Qk</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td><label for="aEuclide">Enter a</label>
+                            <input type="number" title="aEuclide">
+                        </td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>
+                            <label for="bEuclide">Enter b</label>
+                            <input type="number" title="bEuclide">
+                        </td>
+                        <td>X</td>
+                    </tr>
+                </table>
+                <input type="button" value="GO" id="euclideEtenduButton">
 
-                <label for="yEquation">y: </label>
-                <input type="number" name="yEquation" id="yEquation">
-
-                <label for="modEquation">Modulo: </label>
-                <input type="number" name="modEquation" id="modEquation">
-
-                <input type="button" value="Résoudre" id="buttonResoudreEquation">
             </div>
 
+            <div>
+                <h1>Compute numbe of type: x^p[n]</h1>
+                <label for="xPower">Enter x:</label>
+                <input type="number" title="xPower">
+                <label for="pPower">Enter p:</label>
+                <input type="number" title="pPower">
+                <label for="nPower">Enter n:</label>
+                <input type="number" title="nPower">
+                <input type="button" value="GO" id="powerButton">
+            </div>
+
+            <div>
+                <h1>Find liste of invetible in Z/nZ</h1>
+                <p>In other words find all element a such that a ∧ n = 1</p>
+                <label for="nInv">Enter n</label>
+                <input type="number" title="nInv">
+                <input type="button" value="GO" id="invertibleListButton">
+            </div>
+
+            <div>
+                <h1>Solve equation of the type: a * x = b in Z/nZ</h1>
+                <label for="aEq">Enter a:</label>
+                <input type="number" title="aEq">
+                <label for="bEq">Enter b:</label>
+                <input type="number" title="bEq">
+                <label for="nEq">Enter n:</label>
+                <input type="number" title="nEq">
+                <input type="button" value="GO" id="eqButton">
+
+            </div>
 
         </section>
     </main>
-
+    <script src="../utils/chap1.js"></script>
 </body>
 
 </html>
