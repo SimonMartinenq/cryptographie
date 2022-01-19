@@ -44,23 +44,23 @@
             <div>
                 <h1>Compute PGCD</h1>
                 <label for="aPgcd"> Enter a:</label>
-                <input type="number" title="aPgcd">
+                <input type="number" title="aPgcd" id="aPgcd">
                 <label for="bPgcd"> Enter b:</label>
-                <input type="number" title="bPgcd">
+                <input type="number" title="bPgcd" id="bPgcd">
                 <input type="button" value="GO" id="pgcdButton">
             </div>
 
             <div>
                 <h1>Determine the prime factorisation of a number, deduce the number of divisors</h1>
                 <label for="primeFactorisation">Enter a number</label>
-                <input type="number" title="primeFactorisation">
+                <input type="number" title="primeFactorisation" id="primeFactorisation">
                 <input type="button" value="GO" id="factorisationButton">
 
             </div>
 
             <div>
                 <h1>Compute extended Euclidean algorithm</h1>
-                <table>
+                <table id="tableEuclideEtendue">
                     <th scope="row" colspan="4"> extended Euclidean algorithm </th>
                     <tr>
                         <th scope="col">Uk</th>
@@ -72,7 +72,7 @@
                         <td>1</td>
                         <td>0</td>
                         <td><label for="aEuclide">Enter a</label>
-                            <input type="number" title="aEuclide">
+                            <input type="number" title="aEuclide" id="aEuclide">
                         </td>
                         <td>X</td>
                     </tr>
@@ -81,7 +81,7 @@
                         <td>1</td>
                         <td>
                             <label for="bEuclide">Enter b</label>
-                            <input type="number" title="bEuclide">
+                            <input type="number" title="bEuclide" id="bEuclide">
                         </td>
                         <td>X</td>
                     </tr>
@@ -99,24 +99,46 @@
                 <label for="nPower">Enter n:</label>
                 <input type="number" title="nPower">
                 <input type="button" value="GO" id="powerButton">
+                <table>
+                    <th scope="row" colspan="4">Méthode</th>
+                    <tr>
+                        <td>p</td>
+                        <td>x^p</td>
+                        <td>x^p[n]</td>
+                        <td>In x^p[n]</td>
+                    </tr>
+                </table>
             </div>
 
             <div>
                 <h1>Find liste of invetible in Z/nZ</h1>
                 <p>In other words find all element a such that a ∧ n = 1</p>
-                <label for="nInv">Enter n</label>
-                <input type="number" title="nInv">
-                <input type="button" value="GO" id="invertibleListButton">
+                <div>
+                    <p>Calculer l'inverse d'un nombre</p>
+                    <label for="nInverer">Nombre à inverser: </label>
+                    <input type="number" name="nInverer" id="nInverer">
+
+                    <label for="modInverser">Modulo: </label>
+                    <input type="number" name="modInverser" id="modInverser">
+
+                    <input type="button" value="Inverser" id="buttonNInverser">
+                </div>
+                <div>
+                    <p>Pour chaque élément inverssible de n:</p>
+                    <label for="nInvList">Enter n</label>
+                    <input type="number" title="nInv" id="nInvList">
+                    <input type="button" value="GO" id="invertibleListButton">
+                </div>
             </div>
 
             <div>
                 <h1>Solve equation of the type: a * x = b in Z/nZ</h1>
                 <label for="aEq">Enter a:</label>
-                <input type="number" title="aEq">
+                <input type="number" title="aEq" id="aEq">
                 <label for="bEq">Enter b:</label>
-                <input type="number" title="bEq">
+                <input type="number" title="bEq" id="bEq">
                 <label for="nEq">Enter n:</label>
-                <input type="number" title="nEq">
+                <input type="number" title="nEq" id="nEq">
                 <input type="button" value="GO" id="eqButton">
 
             </div>
