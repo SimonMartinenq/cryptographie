@@ -26,81 +26,6 @@ body {
 } */
 
 
-/***************** HEADER *****************/
-
-#logo {
-    height: 70px;
-    width: 70px;
-    margin: 10%;
-    margin-bottom: 150px;
-}
-
-header nav{
-    display: inline-block;
-    width: 100%;
-}
-
-.header_container {
-    background-color: #065A60;
-    margin: 0;
-    padding: 5px 5px;
-    color: black;
-    font-family: 'Courier New', Courier, monospace;
-    position: fixed;
-    top: 0;
-    width: 15em;
-    min-width: 250px;
-    height: 100vh; /*Pemet de prendre toute la page */
-}
-
-#nav_bar_liste {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-}
-
-#nav_bar_liste li {
-    text-align: right;
-    display: inline;
-    float: left;
-    font-size: medium;
-    width: 80%;
-    padding: 5px 2%;
-    margin-bottom: 2em;
-    border-bottom: 1px solid grey;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-#nav_bar_liste li a:hover{
-    color: #272640;
-}
-#nav_bar_liste li:hover{
-    border-bottom:1px solid #272640;
-}
-
-
-#nav_bar_liste li a{
-    padding: 0;
-    display: block;
-    color: grey;
-    /* color: #0B525B; */
-}
-
-.button_topnavbar {
-    color: black;
-    padding: 12px;
-    font-size: 20px;
-    cursor: pointer;
-    text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.button_topnavbar:hover {
-    color: rosybrown;
-}
 
 
 /* collones */
@@ -149,4 +74,31 @@ main{
 }
 h1{
     font-size: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#TitleLogo{
+    height: 2em;
+    position: relative;
+    left: 35px;
+}
+span{
+    color: #065A60;
+    margin-left: 15px;
+}
+section{
+    margin-top: 20%;
+    display: flex;
+    justify-content: space-evenly;
+}
+section a{
+    text-decoration: none;
+}
+article{
+    border: 2px solid black;
+    border-radius: 50px;
+    min-width: 350px;
+    text-align: center;
+    color: #065A60;
 }
