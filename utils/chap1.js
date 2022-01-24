@@ -90,7 +90,19 @@ factorisationButton.onclick = function() {
     alert("Les facteurs premiers sont: " + primeFacor(primeFactorisation.value))
 }
 
-/* euclideEtenduButton.onclick = function() {
+//cacher les ecplications
+let togg3 = document.getElementById("buttonPrimeFactor");
+let d3 = document.getElementById("divPrimeFactor");
+
+togg3.addEventListener("click", () => {
+    if (getComputedStyle(d3).display != "none") {
+        d3.style.display = "none";
+    } else {
+        d3.style.display = "block";
+    }
+})
+
+euclideEtenduButton.onclick = function() {
     let uk = []
     let vk = []
     let rk = []
@@ -98,6 +110,11 @@ factorisationButton.onclick = function() {
     let aVar = aEuclide.value
     let bVar = bEuclide.value
     let tableEuclideEtendueVar = tableEuclideEtendue
+
+    //supprimer les calculs precedent
+    while (tableEuclideEtendueVar.rows.length > 4) {
+        tableEuclideEtendueVar.deleteRow(4);
+    }
 
     //vérifier que a > b
     if (aVar < bVar) {
@@ -120,6 +137,7 @@ factorisationButton.onclick = function() {
             let newLigne = document.createElement("tr")
             let row1 = document.createElement("td")
             row1.textContent = rk[i - 2] % rk[i - 1]
+            newLigne.id = i
             newLigne.appendChild(row1)
             rk[i] = rk[i - 2] % rk[i - 1]
 
@@ -146,7 +164,8 @@ factorisationButton.onclick = function() {
     } else alert("il manque des variables")
         //else return -1
 
-} */
+
+}
 
 powerButton.onclick = function() {
     alert("coucou")
@@ -185,3 +204,28 @@ eqButton.onclick = function() {
         alert(solTab)
     } else alert("no solution")
 }
+
+//cacher les explications
+let togg1 = document.getElementById("buttonExpPrime");
+let d1 = document.getElementById("divExpPrime");
+
+togg1.addEventListener("click", () => {
+    if (getComputedStyle(d1).display != "none") {
+        d1.style.display = "none";
+    } else {
+        d1.style.display = "block";
+    }
+})
+
+let togg2 = document.getElementById("buttonExpPgcd");
+let d2 = document.getElementById("divExpPgcd");
+
+function togg() {
+    if (getComputedStyle(d2).display != "none") {
+        d2.style.display = "none";
+    } else {
+        d2.style.display = "block";
+    }
+}
+
+togg2.onclick = togg;

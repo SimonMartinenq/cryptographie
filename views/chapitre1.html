@@ -36,26 +36,68 @@
         <section>
             <div>
                 <h1>Determine if a number is prime</h1>
-                <label for="nbrPremier"> Enter a number:</label>
-                <input type="number" title="nbrPremier" id="nbrPremier">
-                <input type="button" value="GO" id="isPrimeButton">
+                <button id="buttonExpPrime">show explanations</button>
+                <div id="divExpPrime">
+                    <h2>What is a prime number ?</h2>
+                    <p>
+                        A natural number (greater than or equal to 2) is a prime number if it has exactly 2 divisors: 1 and itself. Example : 2, 3, 5, 7, 11, 13, 17, 19 ... are prime numbers. There is an infinity of them.
+                    </p>
+                    <h2>Naive method</h2>
+                    <p>
+                        To determine whether a natural number n greater than or equal to 2 is a prime, we must search for a divisor of n among successive primes (2, 3, 5, 7, 11 ...) up to the value √n. Indeed, if n admits no divisor among the successive primes up to the value
+                        √n, it will also admit none between √n and n because the divisors of a number go in pairs: one between 2 and √n, and the other between √n and n. If n has no divisors among successive primes up to the value √n, then it is a prime.
+                    </p>
+                    <h2>Sieve of Eratosthenes</h2>
+                    <p>
+                        In the sieve of Eratosthenes, which contains the numbers from 1 to 100, we crossed out successively the multiples of 2, those of 3, those of 5 and those of 7 (112 > 100), to obtain the list of the prime numbers lower than 100. 1 is considered as not being
+                        a prime number.
+                    </p>
+                    <p>tips: know the first prime numbers</p>
+                </div>
+                <div>
+                    <label for="nbrPremier"> Enter a number:</label>
+                    <input type="number" title="nbrPremier" id="nbrPremier">
+                    <input type="button" value="GO" id="isPrimeButton">
+                </div>
             </div>
-
             <div>
                 <h1>Compute PGCD</h1>
-                <label for="aPgcd"> Enter a:</label>
-                <input type="number" title="aPgcd" id="aPgcd">
-                <label for="bPgcd"> Enter b:</label>
-                <input type="number" title="bPgcd" id="bPgcd">
-                <input type="button" value="GO" id="pgcdButton">
+                <button id="buttonExpPgcd">show explanations</button>
+                <div id="divExpPgcd">
+                    <h2>Definition</h2>
+                    <p>
+                        The Greatest Common Divisor (GCD) between two or more numbers is the largest natural number that simultaneously divides all of these numbers.
+                    </p>
+                    <h2>Euclide algorithm</h2>
+                    <p>
+                        The following table shows the calculation of the PGCD of 21 and 15. The Euclidean division of a = 21 and b = 15 is performed: the quotient is 1 and the remainder 6. The algorithm continues with a = b and b = the previous remainder, until finding a zero
+                        remainder. The algorithm then stops and returns the last non-zero remainder found, here r 3 = 3 which is indeed the PGCD of 21 and 15 : <br><br> 21 = 15 x 1 + 6 <br> 15 = 6 x 2 + 3 <br> 6 = 3 x 2 + 0 <br>
+
+                    </p>
+                </div>
+                <div>
+                    <label for="aPgcd"> Enter a:</label>
+                    <input type="number" title="aPgcd" id="aPgcd">
+                    <label for="bPgcd"> Enter b:</label>
+                    <input type="number" title="bPgcd" id="bPgcd">
+                    <input type="button" value="GO" id="pgcdButton">
+                </div>
             </div>
 
             <div>
                 <h1>Determine the prime factorisation of a number, deduce the number of divisors</h1>
-                <label for="primeFactorisation">Enter a number</label>
-                <input type="number" title="primeFactorisation" id="primeFactorisation">
-                <input type="button" value="GO" id="factorisationButton">
-
+                <button id="buttonPrimeFactor">show explanations</button>
+                <div id="divPrimeFactor">
+                    <h2>Method</h2>
+                    <p>
+                        To date, there is no efficient method to decompose a number into prime factors. It is on this problem that the RSA cryptographic system is based. It is thus necessary "stupidly" to divide the chosen number by the factors which divide it, until obtaining
+                        only prime factors. </p>
+                </div>
+                <div>
+                    <label for="primeFactorisation">Enter a number</label>
+                    <input type="number" title="primeFactorisation" id="primeFactorisation">
+                    <input type="button" value="GO" id="factorisationButton">
+                </div>
             </div>
 
             <div>
@@ -85,6 +127,7 @@
                         </td>
                         <td>X</td>
                     </tr>
+                    <table id="divResultatEuclide"></table>
                 </table>
                 <input type="button" value="GO" id="euclideEtenduButton">
 
@@ -145,6 +188,9 @@
 
         </section>
     </main>
+    <footer>
+        Prime number: https://www.assistancescolaire.com/eleve/3e/maths/reviser-une-notion/determiner-si-un-nombre-est-premier-3mnr05 GCD: https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide
+    </footer>
     <script src="../utils/chap1.js"></script>
 </body>
 

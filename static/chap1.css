@@ -12,6 +12,7 @@ h1 {
 
 h2 {
     font-size: 20px;
+    font-weight: normal;
 }
 
 table {
@@ -34,4 +35,8 @@ td input {
 
 div {
     margin-bottom: 3%;
+}
+
+#buttonExpPgcd {
+    width: max-content;
 }
