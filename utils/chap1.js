@@ -168,8 +168,39 @@ euclideEtenduButton.onclick = function() {
 }
 
 powerButton.onclick = function() {
-    alert("coucou")
+    let xPowerVar = xPower.value
+    let pPowerVar = pPower.value
+    let nPowerVar = nPower.value
+    let tablePowerVar = tablePower
+
+    //supprimer les calculs precedent
+    while (tablePowerVar.rows.length > 2) {
+        tableEuclideEtendueVar.deleteRow(2);
+    }
+
+    //décomposition en puissance de deux (p)
+    let stop = false
+    let puissance = 0
+    let tabDecomposition = [1]
+        // 1 2  4 8 16
+        //15
+    while (!stop) {
+        if (xPowerVar > Math.pow(2, puissance) && xPowerVar < Math.pow(2, puissance + 1)) {
+            tabDecomposition.push(Math.pow(2, puissance))
+            xPowerVar = xPowerVar - Math.pow(2, puissance)
+            puissance = 0
+        } else if (xPowerVar == 0) {
+            stop = true
+        } else {
+            puissance = puissance + 1
+        }
+        console.log(tabDecomposition)
+    }
+
+
 }
+
+
 
 buttonNInverser.onclick = function() {
     let nInvererVar = nInverer.value
