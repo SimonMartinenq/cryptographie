@@ -167,35 +167,52 @@ euclideEtenduButton.onclick = function() {
 
 }
 
+//décompose un nombre en puissance de 2
+function decPuiss2(chiffre) {
+    let puissance = 0
+    let valeurs = []
+
+    while (chiffre > 0) {
+
+        puissance += 1
+
+        if (Math.pow(2, puissance) > chiffre) {
+            let previous = Math.pow(2, puissance - 1)
+            valeurs.push(previous)
+            chiffre -= previous
+            puissance = 0
+        }
+    }
+    return valeurs
+}
+
+
 powerButton.onclick = function() {
     let xPowerVar = xPower.value
     let pPowerVar = pPower.value
     let nPowerVar = nPower.value
     let tablePowerVar = tablePower
+    const decompoP = decPuiss2(xPowerVar).sort((a, b) => a - b)
 
     //supprimer les calculs precedent
     while (tablePowerVar.rows.length > 2) {
-        tableEuclideEtendueVar.deleteRow(2);
+        tablePowerVar.deleteRow(2);
     }
 
-    //décomposition en puissance de deux (p)
-    let stop = false
-    let puissance = 0
-    let tabDecomposition = [1]
-        // 1 2  4 8 16
-        //15
-    while (!stop) {
-        if (xPowerVar > Math.pow(2, puissance) && xPowerVar < Math.pow(2, puissance + 1)) {
-            tabDecomposition.push(Math.pow(2, puissance))
-            xPowerVar = xPowerVar - Math.pow(2, puissance)
-            puissance = 0
-        } else if (xPowerVar == 0) {
-            stop = true
-        } else {
-            puissance = puissance + 1
-        }
-        console.log(tabDecomposition)
-    }
+    decompoP.forEach(element => {
+        let newLigne = document.createElement("tr")
+
+        let row1 = document.createElement("td")
+        row1.textContent = element
+        newLigne.appendChild(row1)
+
+        let row2 = document.createElement("td")
+        row2.textContent = Math.pow(element, 2)
+        newLigne.appendChild(row2)
+
+        tablePowerVar.appendChild(newLigne)
+    });
+
 
 
 }
