@@ -171,11 +171,8 @@ euclideEtenduButton.onclick = function() {
 function decPuiss2(chiffre) {
     let puissance = 0
     let valeurs = []
-
     while (chiffre > 0) {
-
         puissance += 1
-
         if (Math.pow(2, puissance) > chiffre) {
             let previous = Math.pow(2, puissance - 1)
             valeurs.push(previous)
@@ -183,38 +180,77 @@ function decPuiss2(chiffre) {
             puissance = 0
         }
     }
-    return valeurs
+
+    return valeurs.sort((a, b) => a - b)
 }
 
 
 powerButton.onclick = function() {
+
     let xPowerVar = xPower.value
     let pPowerVar = pPower.value
     let nPowerVar = nPower.value
     let tablePowerVar = tablePower
-    const decompoP = decPuiss2(xPowerVar).sort((a, b) => a - b)
+    if (xPowerVar == "" || pPowerVar == "" || nPowerVar == "") {
+        alert("missing data")
+    } else {
+        //supprimer les calculs precedent
+        while (tablePowerVar.rows.length > 2) {
+            tablePowerVar.deleteRow(2);
+        }
 
-    //supprimer les calculs precedent
-    while (tablePowerVar.rows.length > 2) {
-        tablePowerVar.deleteRow(2);
+        //colonne 1 / decomposition en puissance de 2
+        const decompoP = decPuiss2(pPowerVar)
+        let col1 = []
+
+        //col4
+        let col4 = []
+
+        for (let index = 1; index <= decompoP[decompoP.length - 1]; index = index * 2) {
+            col1.push(index)
+            if (!decompoP.includes(index)) {
+                col4.push(false)
+            } else {
+                col4.push(true)
+            }
+
+        }
+        console.log(col4)
+
+        //collonne 2 et 3 
+        let col2 = [xPowerVar]
+        let col3 = [xPowerVar % nPowerVar]
+
+        for (let index = 1; index < col4.length; index++) {
+            col2.push(Math.pow(col3[index - 1], 2))
+            col3.push(col2[index] % nPowerVar)
+        }
+        console.log(col2)
+        console.log(col3)
+
+        for (let index1 = 0; index1 < col1.length; index1++) {
+
+            let newLigne = document.createElement("tr")
+
+            let row1 = document.createElement("td")
+            row1.textContent = col1[index1]
+            newLigne.appendChild(row1)
+
+            let row2 = document.createElement("td")
+            row2.textContent = col2[index1]
+            newLigne.appendChild(row2)
+
+            let row3 = document.createElement("td")
+            row3.textContent = col3[index1]
+            newLigne.appendChild(row3)
+
+            let row4 = document.createElement("td")
+            row4.textContent = col4[index1]
+            newLigne.appendChild(row4)
+
+            tablePowerVar.appendChild(newLigne)
+        }
     }
-
-    decompoP.forEach(element => {
-        let newLigne = document.createElement("tr")
-
-        let row1 = document.createElement("td")
-        row1.textContent = element
-        newLigne.appendChild(row1)
-
-        let row2 = document.createElement("td")
-        row2.textContent = Math.pow(element, 2)
-        newLigne.appendChild(row2)
-
-        tablePowerVar.appendChild(newLigne)
-    });
-
-
-
 }
 
 
