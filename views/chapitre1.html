@@ -240,41 +240,107 @@
                     </table>
                 </div>
                 <div>
-                    <p>Compute the inverse of all element in n:</p>
                     <label for="nInvList">Enter n</label>
                     <input type="number" title="nInv" id="nInvList">
                     <input type="button" value="GO" id="invertibleListButton">
                 </div>
             </div>
             <div>
-                <h1>Compute numbe of type: x^p[n]</h1>
-                <label for="xPower">Enter x:</label>
-                <input type="number" title="xPower" id="xPower">
-                <label for="pPower">Enter p:</label>
-                <input type="number" title="pPower" id="pPower">
-                <label for="nPower">Enter n:</label>
-                <input type="number" title="nPower" id="nPower">
-                <input type="button" value="GO" id="powerButton">
-                <table id="tablePower">
-                    <th scope="row" colspan="4">Méthode</th>
-                    <tr>
-                        <td>p</td>
-                        <td>x^p</td>
-                        <td>x^p[n]</td>
-                        <td>In x^p[n]</td>
-                    </tr>
-                </table>
+                <h1>Compute number of type: x^p[n]</h1>
+                <button id="buttonPower">► show explanations</button>
+                <div id="divPower" class="tabDiv">
+                    <h2>Method</h2>
+                    <p>We need to decompose the power "p" of our number "x" into powers of 2 (column 1). For exemple: 23 = 2^0 + 2^1 + 2^2 + 2^4 = 1+2+4+16</p>
+                    <p>Then we calculate our number x to the corresponding power of 2. For the first line it's 1, but for the following lines it's the same as doing our previous remainder to the square.</p>
+                    <p>For the third column it is sufficient to perform the modulo "n" of the second column at each step. This reduces the calculation for column 2.</p>
+                    <p>The last column indicates whether the power of 2 makes up our power "p"</p>
+                    <h2>Exemple 19^23[29]</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th scope="row" colspan="4">Méthode</th>
+                            </tr>
+                            <tr>
+                                <td>p</td>
+                                <td>x^p</td>
+                                <td>x^p[n]</td>
+                                <td>In x^p[n]</td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>19</td>
+                            <td>19</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>361</td>
+                            <td>13</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>169</td>
+                            <td>24</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>576</td>
+                            <td>25</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>625</td>
+                            <td>16</td>
+                            <td>true</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <label for="xPower">Enter x:</label>
+                    <input type="number" title="xPower" id="xPower">
+                    <label for="pPower">Enter p:</label>
+                    <input type="number" title="pPower" id="pPower">
+                    <label for="nPower">Enter n:</label>
+                    <input type="number" title="nPower" id="nPower">
+                    <input type="button" value="GO" id="powerButton">
+                    <table id="tablePower">
+                        <th scope="row" colspan="4">Méthode</th>
+                        <tr>
+                            <td>p</td>
+                            <td>x^p</td>
+                            <td>x^p[n]</td>
+                            <td>In x^p[n]</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <div>
                 <h1>Solve equation of the type: a * x = b in Z/nZ</h1>
-                <label for="aEq">Enter a:</label>
-                <input type="number" title="aEq" id="aEq">
-                <label for="bEq">Enter b:</label>
-                <input type="number" title="bEq" id="bEq">
-                <label for="nEq">Enter n:</label>
-                <input type="number" title="nEq" id="nEq">
-                <input type="button" value="GO" id="eqButton">
+                <button id="buttoneq">► show explanations</button>
+                <div id="divEq">
+                    <h2>Method</h2>
+                    <h3>Case 1: a is invertible</h3>
+                    <p>In this case it's simple, it comes back to an "ordinary" equation: x = b * Inv(a)</p>
+                    <h3>Case 2: a is not invertible but b is a multiple of GCD(a,n)</h3>
+                    <p>In this case, the formula for x is: b/a + k * n/a, k ∈ {0,...,a-1}. If the value obtained with a case is not integer, it is not a solution.</p>
+                    <h3>Case 3: a is not invertible and b is not a multiple of GCD(a,n)</h3>
+                    <p>Sorry, there is no solution</p>
+
+                </div>
+                <div>
+                    <label for="aEq">Enter a:</label>
+                    <input type="number" title="aEq" id="aEq">
+                    <label for="bEq">Enter b:</label>
+                    <input type="number" title="bEq" id="bEq">
+                    <label for="nEq">Enter n:</label>
+                    <input type="number" title="nEq" id="nEq">
+                    <input type="button" value="GO" id="eqButton">
+                </div>
 
             </div>
 
@@ -285,7 +351,9 @@
         <h1>Sources:</h1>
         <p>
             <a href="https://www.assistancescolaire.com/eleve/3e/maths/reviser-une-notion/determiner-si-un-nombre-est-premier-3mnr05">Prime number</a>,
-            <a href="https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide">GCD</a>, autres : cours délivrer par Nicolas Flasque, Federico Zalamea à Efrei Paris
+            <a href="https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide">GCD</a>, autres : cours délivrer par Nicolas Flasque, Federico Zalamea à
+            <a href="https://www.efrei.fr">Efrei Paris</a>,
+            <a href="https://www.youtube.com/watch?v=NRiCppM9mRg&list=PL_8L2yZR8iGnkQeNymXJIt6bICmqaJvil">Vidéos</a>
 
         </p>
         <h1>Bibliography:</h1>

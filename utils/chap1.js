@@ -299,6 +299,20 @@ powerButton.onclick = function() {
     }
 }
 
+//cahcher les explication euclide etendue 
+let togg7 = document.getElementById("buttonPower");
+let d7 = document.getElementById("divPower");
+
+togg7.onclick = () => {
+    if (getComputedStyle(d7).display != "none") {
+        d7.style.display = "none";
+        togg7.textContent = "► show explanations";
+    } else {
+        d7.style.display = "block";
+        togg7.textContent = "▼ hide explanations";
+    }
+}
+
 //trouver l'inverse
 //
 buttonNInverser.onclick = function() {
@@ -365,6 +379,19 @@ eqButton.onclick = function() {
         alert(solTab)
     } else alert("no solution")
 }
+let togg8 = document.getElementById("buttoneq");
+let d8 = document.getElementById("divEq");
+//cacher les explication
+togg8.onclick = () => {
+    if (getComputedStyle(d8).display != "none") {
+        d8.style.display = "none";
+        togg8.textContent = "► show explanations";
+    } else {
+        d8.style.display = "block";
+        togg8.textContent = "▼ hide explanations";
+    }
+}
+
 
 
 
@@ -376,4 +403,6 @@ window.onload = () => {
     d4.style.display = "none";
     d5.style.display = "none";
     d6.style.display = "none";
+    d7.style.display = "none";
+    d8.style.display = "none";
 }
