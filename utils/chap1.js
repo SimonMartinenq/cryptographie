@@ -74,13 +74,27 @@ function calculateInverse(a, modulo) {
 }
 
 isPrimeButton.onclick = function() {
-    const n = nbrPremier.value
-    if (isPrime(n)) {
-        alert("le nombre EST premier")
+        const n = nbrPremier.value
+        if (isPrime(n)) {
+            alert("le nombre EST premier")
+        } else {
+            alert("le nombre N'EST PAS premier")
+        }
+    }
+    //cacher les explications
+let togg1 = document.getElementById("buttonExpPrime");
+let d1 = document.getElementById("divExpPrime");
+
+togg1.onclick = () => {
+    if (getComputedStyle(d1).display != "none") {
+        d1.style.display = "none";
+        togg1.textContent = "► show explanations";
     } else {
-        alert("le nombre N'EST PAS premier")
+        d1.style.display = "block";
+        togg1.textContent = "▼ hide explanations";
     }
 }
+
 
 //PGCD
 //
@@ -96,15 +110,15 @@ pgcdButton.onclick = function() {
 let togg2 = document.getElementById("buttonExpPgcd");
 let d2 = document.getElementById("divExpPgcd");
 
-function togg() {
+togg2.onclick = () => {
     if (getComputedStyle(d2).display != "none") {
         d2.style.display = "none";
+        togg2.textContent = "► show explanations";
     } else {
         d2.style.display = "block";
+        togg2.textContent = "▼ hide explanations";
     }
 }
-togg2.onclick = togg;
-
 
 //Factorisation en facteur premier
 //
@@ -116,13 +130,15 @@ factorisationButton.onclick = function() {
 let togg3 = document.getElementById("buttonPrimeFactor");
 let d3 = document.getElementById("divPrimeFactor");
 
-togg3.addEventListener("click", () => {
+togg3.onclick = () => {
     if (getComputedStyle(d3).display != "none") {
         d3.style.display = "none";
+        togg3.textContent = "► show explanations";
     } else {
         d3.style.display = "block";
+        togg3.textContent = "▼ hide explanations";
     }
-})
+}
 
 euclideEtenduButton.onclick = function() {
         let uk = []
@@ -190,13 +206,16 @@ euclideEtenduButton.onclick = function() {
     //cahcher les explication euclide etendue 
 let togg4 = document.getElementById("buttonExtendEuclide");
 let d4 = document.getElementById("divExtendEuclide");
-togg4.addEventListener("click", () => {
+
+togg4.onclick = () => {
     if (getComputedStyle(d4).display != "none") {
         d4.style.display = "none";
+        togg4.textContent = "► show explanations";
     } else {
         d4.style.display = "block";
+        togg4.textContent = "▼ hide explanations";
     }
-})
+}
 
 
 //décompose un nombre en puissance de 2
@@ -294,14 +313,15 @@ buttonNInverser.onclick = function() {
     //cacher les explications
 let togg6 = document.getElementById("buttonInverse");
 let d6 = document.getElementById("divInverse");
-togg6.addEventListener("click", () => {
+togg6.onclick = () => {
     if (getComputedStyle(d6).display != "none") {
         d6.style.display = "none";
+        togg6.textContent = "► show explanations";
     } else {
         d6.style.display = "block";
+        togg6.textContent = "▼ hide explanations";
     }
-})
-
+}
 
 
 //liste inverse
@@ -321,42 +341,30 @@ invertibleListButton.onclick = function() {
 let togg5 = document.getElementById("buttonInverseList");
 let d5 = document.getElementById("divInverseList");
 //cacher les explication
-togg5.addEventListener("click", () => {
+togg5.onclick = () => {
     if (getComputedStyle(d5).display != "none") {
         d5.style.display = "none";
+        togg5.textContent = "► show explanations";
     } else {
         d5.style.display = "block";
+        togg5.textContent = "▼ hide explanations";
     }
-})
+}
 
 
 //equation x^p[n]
 //
 eqButton.onclick = function() {
-        if (pgcd(aEq.value, nEq.value) == 1) {
-            alert("x = " + calculateInverse(aEq.value, nEq.value) * bEq.value)
-        } else if (bEq.value % pgcd(aEq.value, nEq.value) == 0) {
-            let solTab = []
-            for (let index = 0; index < aEq.value - 1; index++) {
-                solTab.push(bEq.value / aEq.value + nEq.value * index / aEq.value)
-            }
-            alert(solTab)
-        } else alert("no solution")
-    }
-    //cacher les explications
-let togg1 = document.getElementById("buttonExpPrime");
-let d1 = document.getElementById("divExpPrime");
-
-togg1.addEventListener("click", () => {
-    if (getComputedStyle(d1).display != "none") {
-        d1.style.display = "none";
-    } else {
-        d1.style.display = "block";
-    }
-})
-
-
-
+    if (pgcd(aEq.value, nEq.value) == 1) {
+        alert("x = " + calculateInverse(aEq.value, nEq.value) * bEq.value)
+    } else if (bEq.value % pgcd(aEq.value, nEq.value) == 0) {
+        let solTab = []
+        for (let index = 0; index < aEq.value - 1; index++) {
+            solTab.push(bEq.value / aEq.value + nEq.value * index / aEq.value)
+        }
+        alert(solTab)
+    } else alert("no solution")
+}
 
 
 
