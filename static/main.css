@@ -1,7 +1,7 @@
 body {
     background-color: white;
     color: black;
-    padding: opx;
+    padding: 0px;
     margin: 0px;
     font-family: 'Courier New', Courier, monospace;
     background-size: cover;
@@ -24,8 +24,6 @@ body {
     margin-top: 5%;
     margin-bottom: 5%;
 } */
-
-
 
 
 /* collones */
@@ -57,6 +55,7 @@ body {
 
 
 /* fromulaire classic */
+
 
 .text-center{
     text-align: center;
@@ -102,3 +101,28 @@ article{
     text-align: center;
     color: #065A60;
 }
+
+/* footer */
+
+footer {
+    padding: 2%;
+    font-size: 13px;
+    color: gray;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+}
+
+footer h1 {
+    font-weight: normal;
+    font-size: 15px;
+}
+
+a {
+    color: grey;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rosybrown;
+}
+
