@@ -102,6 +102,15 @@
 
             <div>
                 <h1>Compute extended Euclidean algorithm</h1>
+                <button id="buttonExtendEuclide">show explanations</button>
+                <div id="divExtendEuclide">
+                    <h2>Principle</h2>
+                    <p>Let a > b be two natural numbers and consider the Euclidean algorithm above on the page, to which one adds two new sequences (un,vn) defined by </p>
+                    <p>⋆ u0 =1,u1 =0,v0 =0,v1 =1,</p>
+                    <p>⋆ forn≥2,</p>
+                    <p> un = un−2 − qnun−1 et vn = vn−2 − qnvn−1 (extended Euclid)</p>
+                    <p>Then, for all n ∈ N, we have una+vnb = rn. In particular, if the last non-zero remainder in the Euclidean algorithm is rN , (uN , vN ) is an integer solution to the equation au+bv = a∧b.</p>
+                </div>
                 <table id="tableEuclideEtendue">
                     <th scope="row" colspan="4"> extended Euclidean algorithm </th>
                     <tr>
@@ -132,7 +141,111 @@
                 <input type="button" value="GO" id="euclideEtenduButton">
 
             </div>
+            <div>
+                <h1>Find the inverse of one number:</h1>
+                <button id="buttonInverse">show explanations</button>
+                <div id="divInverse">
+                    <h2>Methode</h2>
+                    <h3>Condition</h3>
+                    <p>First of all, before calculating the inverse of a number, you have to check if it is invertible. For this, we ask ourselves if the PGCD of a and n is equal to 1</p>
+                    <h3>Calculation</h3>
+                    <p>To find the inverse of a number in Z/nZ we use the Extended Euclidean algorithm (see above). The component "a" being the "n" and "b" being the number whose inverse is sought in Z/nZ. The inverse is the Vk component of the algorithm
+                    </p>
+                    <h3>Tips</h3>
+                    <p>Try for small common numbers to do it in your head.</p>
+                    <p>For example, the inverse of 2 in Z/15Z is 8 because 2x8=16=1. </p>
+                    <p>Or if you don't find the inverse after several multiples example : 9 x ? = 1 in Z/14Z, look in the negatives ! 9 x -3 = 1 in Z/14Z.</p>
+                </div>
+                <div>
+                    <label for="nInverer">Number to inverse:</label>
+                    <input type="number" name="nInverer" id="nInverer">
 
+                    <label for="modInverser">Modulo: </label>
+                    <input type="number" name="modInverser" id="modInverser">
+
+                    <input type="button" value="Inverser" id="buttonNInverser">
+                </div>
+            </div>
+            <div>
+                <h1>Find liste of invetible in Z/nZ</h1>
+                <button id="buttonInverseList">show explanations</button>
+                <div id="divInverseList">
+                    <h2>Definition</h2>
+                    <p>In other words find all element a such that GCD(a,n)=1 otherwise written a ∧ n = 1</p>
+                    <h2>Methode</h2>
+                    <p>From what we have just seen, it seems long if we have to calculate the inverse of each number. But don't worry there are some techniques/properties to go faster.</p>
+                    <h3>Property</h3>
+                    <p> - 0 is never invertible</p>
+                    <p> - 1 is always invertible and his inverse is 1</p>
+                    <p> - Note the symmetry of the list</p>
+                    <h3>Execution</h3>
+                    <p>Let's see the execution through an example. Let's take Inv(Z/14Z) and make an array from 1 to 13. We know that 1 is invertible and that its inverse is 1. Then before calculating the inverse, we check that the numbers are invertible.
+                        For example for 2 : PGCD(2,14) != 1, so 2 is not invertible. We continue like that until the half of n. Because 3 = -11 so Inv(3) = Inv(-11)
+                        <==> Inv(11)=-Inv(3) (Symmetry of inverses). This symmetry is valid for non-invertible numbers: in our case 2 is not invertible so 12 is not either. One last thing to note: If the inverse of 3 is 5 for example then the inverse of 5
+                            is 3.
+
+                    </p>
+                    <table>
+                        <tr>
+                            <td>Z/14Z</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>Is it invertible</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>N</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                        </tr>
+                        <tr>
+                            <td>Inv(Z/14Z)</td>
+                            <td></td>
+                            <td>1</td>
+                            <td></td>
+                            <td>5</td>
+                            <td></td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>-3</td>
+                            <td></td>
+                            <td>-5</td>
+                            <td></td>
+                            <td>-1</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <p>Compute the inverse of all element in n:</p>
+                    <label for="nInvList">Enter n</label>
+                    <input type="number" title="nInv" id="nInvList">
+                    <input type="button" value="GO" id="invertibleListButton">
+                </div>
+            </div>
             <div>
                 <h1>Compute numbe of type: x^p[n]</h1>
                 <label for="xPower">Enter x:</label>
@@ -154,27 +267,6 @@
             </div>
 
             <div>
-                <h1>Find liste of invetible in Z/nZ</h1>
-                <p>In other words find all element a such that a ∧ n = 1</p>
-                <div>
-                    <p>Calculer l'inverse d'un nombre</p>
-                    <label for="nInverer">Nombre à inverser: </label>
-                    <input type="number" name="nInverer" id="nInverer">
-
-                    <label for="modInverser">Modulo: </label>
-                    <input type="number" name="modInverser" id="modInverser">
-
-                    <input type="button" value="Inverser" id="buttonNInverser">
-                </div>
-                <div>
-                    <p>Pour chaque élément inverssible de n:</p>
-                    <label for="nInvList">Enter n</label>
-                    <input type="number" title="nInv" id="nInvList">
-                    <input type="button" value="GO" id="invertibleListButton">
-                </div>
-            </div>
-
-            <div>
                 <h1>Solve equation of the type: a * x = b in Z/nZ</h1>
                 <label for="aEq">Enter a:</label>
                 <input type="number" title="aEq" id="aEq">
@@ -189,7 +281,19 @@
         </section>
     </main>
     <footer>
-        Prime number: https://www.assistancescolaire.com/eleve/3e/maths/reviser-une-notion/determiner-si-un-nombre-est-premier-3mnr05 GCD: https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide
+        <h1>Create by Simon Martinenq and Antonin Lampin</h1>
+        <h1>Sources:</h1>
+        <p>
+            <a href="https://www.assistancescolaire.com/eleve/3e/maths/reviser-une-notion/determiner-si-un-nombre-est-premier-3mnr05">Prime number</a>,
+            <a href="https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide">GCD</a>, autres : cours délivrer par Nicolas Flasque, Federico Zalamea à Efrei Paris
+
+        </p>
+        <h1>Bibliography:</h1>
+        <p>
+            There are many easily accessible tools that can help you supplement these notes, bring in other, deeper, perspectives, provide additional examples and exercises. Take advantage of this wealth! Here is a list of some suggested books : <br>⋆
+            F. Liret, Arithmétique: Cours et exercices corrigés, Dunod, 2011. (accessible via scholar- vox) <br>⋆ J.P. Lamoitier, L’arithmétique, une introduction ludique, éditions Hermann, 2008. (ac- cessible via scholarvox) <br>⋆ N. Koblitz, A Course
+            in Number Theory and Cryptography, Springer-Verlag, 1994. (Chap- ter I)
+        </p>
     </footer>
     <script src="../utils/chap1.js"></script>
 </body>

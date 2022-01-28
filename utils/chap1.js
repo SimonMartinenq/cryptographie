@@ -1,5 +1,10 @@
 // penser un fichier js avec juste les fonctions pour tous les chapitres
 
+//modulo
+Number.prototype.mod = function(n) { return ((this % n) + n) % n; }
+
+
+
 function isPrime(n) {
     if (n == 2 || n == 3) return true
     if (n < 2 || n % 2 == 0) return false
@@ -75,22 +80,39 @@ isPrimeButton.onclick = function() {
     } else {
         alert("le nombre N'EST PAS premier")
     }
-
 }
+
+//PGCD
+//
 pgcdButton.onclick = function() {
-    const varPgcd = pgcd(aPgcd.value, bPgcd.value)
-    if (varPgcd == 1) {
-        alert("Le pgcd de " + aPgcd.value + " et " + bPgcd.value + " est: " + varPgcd + ", il sont premier entre eux")
+        const varPgcd = pgcd(aPgcd.value, bPgcd.value)
+        if (varPgcd == 1) {
+            alert("Le pgcd de " + aPgcd.value + " et " + bPgcd.value + " est: " + varPgcd + ", il sont premier entre eux")
+        } else {
+            alert("Le pgcd de " + aPgcd.value + " et " + bPgcd.value + " est: " + varPgcd)
+        }
+    }
+    //cacher les explication
+let togg2 = document.getElementById("buttonExpPgcd");
+let d2 = document.getElementById("divExpPgcd");
+
+function togg() {
+    if (getComputedStyle(d2).display != "none") {
+        d2.style.display = "none";
     } else {
-        alert("Le pgcd de " + aPgcd.value + " et " + bPgcd.value + " est: " + varPgcd)
+        d2.style.display = "block";
     }
 }
-factorisationButton.onclick = function() {
-    //en déduire le nombre de diviseurs
-    alert("Les facteurs premiers sont: " + primeFacor(primeFactorisation.value))
-}
+togg2.onclick = togg;
 
-//cacher les ecplications
+
+//Factorisation en facteur premier
+//
+factorisationButton.onclick = function() {
+        //en déduire le nombre de diviseurs
+        alert("Les facteurs premiers sont: " + primeFacor(primeFactorisation.value))
+    }
+    //cacher les ecplications
 let togg3 = document.getElementById("buttonPrimeFactor");
 let d3 = document.getElementById("divPrimeFactor");
 
@@ -103,69 +125,79 @@ togg3.addEventListener("click", () => {
 })
 
 euclideEtenduButton.onclick = function() {
-    let uk = []
-    let vk = []
-    let rk = []
-    let qk = [0, 0]
-    let aVar = aEuclide.value
-    let bVar = bEuclide.value
-    let tableEuclideEtendueVar = tableEuclideEtendue
+        let uk = []
+        let vk = []
+        let rk = []
+        let qk = [0, 0]
+        let aVar = aEuclide.value
+        let bVar = bEuclide.value
+        let tableEuclideEtendueVar = tableEuclideEtendue
 
-    //supprimer les calculs precedent
-    while (tableEuclideEtendueVar.rows.length > 4) {
-        tableEuclideEtendueVar.deleteRow(4);
-    }
-
-    //vérifier que a > b
-    if (aVar < bVar) {
-        const tmp = aVar
-        aVar = bVar
-        bVar = tmp
-    }
-
-    if (aVar != "" && bVar != "") {
-        uk[0] = (1)
-        uk[1] = (0)
-        vk[0] = (0)
-        vk[1] = (1)
-        rk[0] = (aVar)
-        rk[1] = (bVar)
-
-        stop = false
-        let i = 2
-        while (!stop) {
-            let newLigne = document.createElement("tr")
-            let row1 = document.createElement("td")
-            row1.textContent = rk[i - 2] % rk[i - 1]
-            newLigne.id = i
-            newLigne.appendChild(row1)
-            rk[i] = rk[i - 2] % rk[i - 1]
-
-            let row2 = document.createElement("td")
-            row2.textContent = Math.floor(rk[i - 2] / rk[i - 1])
-            newLigne.appendChild(row2)
-            qk[i] = Math.floor(rk[i - 2] / rk[i - 1])
-
-            let row3 = document.createElement("td")
-            row3.textContent = uk[i - 2] - qk[i] * uk[i - 1]
-            newLigne.appendChild(row3)
-            uk[i] = uk[i - 2] - qk[i] * uk[i - 1]
-
-            let row4 = document.createElement("td")
-            row4.textContent = vk[i - 2] - qk[i] * vk[i - 1]
-            newLigne.appendChild(row4)
-            vk[i] = vk[i - 2] - qk[i] * vk[i - 1]
-
-            tableEuclideEtendueVar.appendChild(newLigne)
-            if (rk[i] == 0) stop = true
-            i += 1
+        //supprimer les calculs precedent
+        while (tableEuclideEtendueVar.rows.length > 4) {
+            tableEuclideEtendueVar.deleteRow(4);
         }
-        //return mod(vk[i - 2], modulo)
-    } else alert("il manque des variables")
-        //else return -1
+
+        //vérifier que a > b
+        if (aVar < bVar) {
+            const tmp = aVar
+            aVar = bVar
+            bVar = tmp
+        }
+
+        if (aVar != "" && bVar != "") {
+            uk[0] = (1)
+            uk[1] = (0)
+            vk[0] = (0)
+            vk[1] = (1)
+            rk[0] = (aVar)
+            rk[1] = (bVar)
+
+            stop = false
+            let i = 2
+            while (!stop) {
+                let newLigne = document.createElement("tr")
+
+                rk[i] = rk[i - 2] % rk[i - 1]
+                qk[i] = Math.floor(rk[i - 2] / rk[i - 1])
+                uk[i] = uk[i - 2] - qk[i] * uk[i - 1]
+                vk[i] = vk[i - 2] - qk[i] * vk[i - 1]
+
+                let row1 = document.createElement("td")
+                row1.textContent = uk[i]
+                newLigne.appendChild(row1)
+
+                let row2 = document.createElement("td")
+                row2.textContent = vk[i]
+                newLigne.appendChild(row2)
+
+                let row3 = document.createElement("td")
+                row3.textContent = rk[i]
+                newLigne.appendChild(row3)
+
+                let row4 = document.createElement("td")
+                row4.textContent = qk[i]
+                newLigne.appendChild(row4)
 
 
-}
+                tableEuclideEtendueVar.appendChild(newLigne)
+                if (rk[i] == 0) stop = true
+                i += 1
+            }
+        } else alert("il manque des variables")
+
+    }
+    //cahcher les explication euclide etendue 
+let togg4 = document.getElementById("buttonExtendEuclide");
+let d4 = document.getElementById("divExtendEuclide");
+togg4.addEventListener("click", () => {
+    if (getComputedStyle(d4).display != "none") {
+        d4.style.display = "none";
+    } else {
+        d4.style.display = "block";
+    }
+})
+
 
 //décompose un nombre en puissance de 2
 function decPuiss2(chiffre) {
@@ -183,7 +215,6 @@ function decPuiss2(chiffre) {
 
     return valeurs.sort((a, b) => a - b)
 }
-
 
 powerButton.onclick = function() {
 
@@ -215,8 +246,6 @@ powerButton.onclick = function() {
             }
 
         }
-        console.log(col4)
-
         //collonne 2 et 3 
         let col2 = [xPowerVar]
         let col3 = [xPowerVar % nPowerVar]
@@ -225,8 +254,6 @@ powerButton.onclick = function() {
             col2.push(Math.pow(col3[index - 1], 2))
             col3.push(col2[index] % nPowerVar)
         }
-        console.log(col2)
-        console.log(col3)
 
         for (let index1 = 0; index1 < col1.length; index1++) {
 
@@ -253,18 +280,32 @@ powerButton.onclick = function() {
     }
 }
 
-
-
+//trouver l'inverse
+//
 buttonNInverser.onclick = function() {
-    let nInvererVar = nInverer.value
-    let modInverserVar = modInverser.value
-    if (nInvererVar == "" || modInverserVar == "") {
-        alert("Il manque des informations")
-    } else {
-        alert(calculateInverse(nInvererVar, modInverserVar))
+        let nInvererVar = nInverer.value
+        let modInverserVar = modInverser.value
+        if (nInvererVar == "" || modInverserVar == "") {
+            alert("Il manque des informations")
+        } else {
+            alert("l'inversde de " + nInvererVar + " est " + calculateInverse(nInvererVar, modInverserVar))
+        }
     }
-}
+    //cacher les explications
+let togg6 = document.getElementById("buttonInverse");
+let d6 = document.getElementById("divInverse");
+togg6.addEventListener("click", () => {
+    if (getComputedStyle(d6).display != "none") {
+        d6.style.display = "none";
+    } else {
+        d6.style.display = "block";
+    }
+})
 
+
+
+//liste inverse
+// 
 invertibleListButton.onclick = function() {
     //il suffit de trouver la premiere moitiee des inverse 
     //le reste est simplement le symétrique 2 -> -2
@@ -277,19 +318,32 @@ invertibleListButton.onclick = function() {
     }
     alert(listInvertible)
 }
-eqButton.onclick = function() {
-    if (pgcd(aEq.value, nEq.value) == 1) {
-        alert("x = " + calculateInverse(aEq.value, nEq.value) * bEq.value)
-    } else if (bEq.value % pgcd(aEq.value, nEq.value) == 0) {
-        let solTab = []
-        for (let index = 0; index < aEq.value - 1; index++) {
-            solTab.push(bEq.value / aEq.value + nEq.value * index / aEq.value)
-        }
-        alert(solTab)
-    } else alert("no solution")
-}
+let togg5 = document.getElementById("buttonInverseList");
+let d5 = document.getElementById("divInverseList");
+//cacher les explication
+togg5.addEventListener("click", () => {
+    if (getComputedStyle(d5).display != "none") {
+        d5.style.display = "none";
+    } else {
+        d5.style.display = "block";
+    }
+})
 
-//cacher les explications
+
+//equation x^p[n]
+//
+eqButton.onclick = function() {
+        if (pgcd(aEq.value, nEq.value) == 1) {
+            alert("x = " + calculateInverse(aEq.value, nEq.value) * bEq.value)
+        } else if (bEq.value % pgcd(aEq.value, nEq.value) == 0) {
+            let solTab = []
+            for (let index = 0; index < aEq.value - 1; index++) {
+                solTab.push(bEq.value / aEq.value + nEq.value * index / aEq.value)
+            }
+            alert(solTab)
+        } else alert("no solution")
+    }
+    //cacher les explications
 let togg1 = document.getElementById("buttonExpPrime");
 let d1 = document.getElementById("divExpPrime");
 
@@ -301,15 +355,17 @@ togg1.addEventListener("click", () => {
     }
 })
 
-let togg2 = document.getElementById("buttonExpPgcd");
-let d2 = document.getElementById("divExpPgcd");
 
-function togg() {
-    if (getComputedStyle(d2).display != "none") {
-        d2.style.display = "none";
-    } else {
-        d2.style.display = "block";
-    }
+
+
+
+
+//cacher toutes les explication au chargement de la page
+window.onload = () => {
+    d1.style.display = "none";
+    d2.style.display = "none";
+    d3.style.display = "none";
+    d4.style.display = "none";
+    d5.style.display = "none";
+    d6.style.display = "none";
 }
-
-togg2.onclick = togg;

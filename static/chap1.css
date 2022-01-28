@@ -15,6 +15,12 @@ h2 {
     font-weight: normal;
 }
 
+h3 {
+    font-size: 18px;
+    font-weight: normal;
+    font-style: oblique;
+}
+
 table {
     margin: 1%;
     width: 30%;
@@ -39,4 +45,10 @@ div {
 
 #buttonExpPgcd {
     width: max-content;
+}
+
+main p {
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: justify;
 }
