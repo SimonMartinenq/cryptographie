@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/chap1.css">
     <link rel="stylesheet" href="../static/main.css">
+
     <title>Chapitre 1</title>
 </head>
 
@@ -31,66 +33,337 @@
         </nav>
     </header>
     <main>
-        <section class="colgauche">
-            En cours de dev, voir Chapitre 3
-        </section>
-        <section class="coldroite">
-
-
+        <section>
             <div>
-                <p>Compute Euler</p>
-                <label for="nEuler">n: </label>
-                <input type="number" name="nEuler" id="nEuler">
-                <input type="button" value="Compute Euler" id="computeEulerButton">
+                <h1>Determine if a number is prime</h1>
+                <button id="buttonExpPrime">► show explanations</button>
+                <div id="divExpPrime" class="tabDiv">
+                    <h2>What is a prime number ?</h2>
+                    <p>
+                        A natural number (greater than or equal to 2) is a prime number if it has exactly 2 divisors: 1 and itself. Example : 2, 3, 5, 7, 11, 13, 17, 19 ... are prime numbers. There is an infinity of them.
+                    </p>
+                    <h2>Naive method</h2>
+                    <p>
+                        To determine whether a natural number n greater than or equal to 2 is a prime, we must search for a divisor of n among successive primes (2, 3, 5, 7, 11 ...) up to the value √n. Indeed, if n admits no divisor among the successive primes up to the value
+                        √n, it will also admit none between √n and n because the divisors of a number go in pairs: one between 2 and √n, and the other between √n and n. If n has no divisors among successive primes up to the value √n, then it is a prime.
+                    </p>
+                    <h2>Sieve of Eratosthenes</h2>
+                    <p>
+                        In the sieve of Eratosthenes, which contains the numbers from 1 to 100, we crossed out successively the multiples of 2, those of 3, those of 5 and those of 7 (112 > 100), to obtain the list of the prime numbers lower than 100. 1 is considered as not being
+                        a prime number.
+                    </p>
+                    <p>tips: know the first prime numbers</p>
+                </div>
+                <div>
+                    <label for="nbrPremier"> Enter a number:</label>
+                    <input type="number" title="nbrPremier" id="nbrPremier">
+                    <input type="button" value="GO" id="isPrimeButton">
+                </div>
+            </div>
+            <div>
+                <h1>Compute PGCD</h1>
+                <button id="buttonExpPgcd">► show explanations</button>
+                <div id="divExpPgcd" class="tabDiv">
+                    <h2>Definition</h2>
+                    <p>
+                        The Greatest Common Divisor (GCD) between two or more numbers is the largest natural number that simultaneously divides all of these numbers.
+                    </p>
+                    <h2>Euclide algorithm</h2>
+                    <p>
+                        The following table shows the calculation of the PGCD of 21 and 15. The Euclidean division of a = 21 and b = 15 is performed: the quotient is 1 and the remainder 6. The algorithm continues with a = b and b = the previous remainder, until finding a zero
+                        remainder. The algorithm then stops and returns the last non-zero remainder found, here r 3 = 3 which is indeed the PGCD of 21 and 15 : <br><br> 21 = 15 x 1 + 6 <br> 15 = 6 x 2 + 3 <br> 6 = 3 x 2 + 0 <br>
+
+                    </p>
+                </div>
+                <div>
+                    <label for="aPgcd"> Enter a:</label>
+                    <input type="number" title="aPgcd" id="aPgcd">
+                    <label for="bPgcd"> Enter b:</label>
+                    <input type="number" title="bPgcd" id="bPgcd">
+                    <input type="button" value="GO" id="pgcdButton">
+                </div>
             </div>
 
-
             <div>
-                <p>Compute Euler puissance</p>
-                <label for="nombrePuissance">nombre: </label>
-                <input type="number" name="nombrePuissance" id="nombrePuissance">
-
-                <label for="puissance">puissance: </label>
-                <input type="number" name="puissance" id="puissance">
-
-                <label for="moduloEuler">modulo: </label>
-                <input type="number" name="moduloEuler" id="moduloEuler">
-
-                <input type="button" value="Compute Euler" id="computeEulerPuissanceButton">
+                <h1>Determine the prime factorisation of a number, deduce the number of divisors</h1>
+                <button id="buttonPrimeFactor">► show explanations</button>
+                <div id="divPrimeFactor" class="tabDiv">
+                    <h2>Method</h2>
+                    <p>
+                        To date, there is no efficient method to decompose a number into prime factors. It is on this problem that the RSA cryptographic system is based. It is thus necessary "stupidly" to divide the chosen number by the factors which divide it, until obtaining
+                        only prime factors. </p>
+                </div>
+                <div>
+                    <label for="primeFactorisation">Enter a number</label>
+                    <input type="number" title="primeFactorisation" id="primeFactorisation">
+                    <input type="button" value="GO" id="factorisationButton">
+                </div>
             </div>
 
-
-
             <div>
-                <p>Trouver l'inverse d'un nombre</p>
-                <label for="nInverer">Nombre à inverser: </label>
-                <input type="number" name="nInverer" id="nInverer">
+                <h1>Compute extended Euclidean algorithm</h1>
+                <button id="buttonExtendEuclide">► show explanations</button>
+                <div id="divExtendEuclide" class="tabDiv">
+                    <h2>Principle</h2>
+                    <p>Let a > b be two natural numbers and consider the Euclidean algorithm above on the page, to which one adds two new sequences (un,vn) defined by </p>
+                    <p>⋆ u0 =1,u1 =0,v0 =0,v1 =1,</p>
+                    <p>⋆ forn≥2,</p>
+                    <p> un = un−2 − qnun−1 et vn = vn−2 − qnvn−1 (extended Euclid)</p>
+                    <p>Then, for all n ∈ N, we have una+vnb = rn. In particular, if the last non-zero remainder in the Euclidean algorithm is rN , (uN , vN ) is an integer solution to the equation au+bv = a∧b.</p>
+                </div>
+                <table id="tableEuclideEtendue">
+                    <th scope="row" colspan="4"> extended Euclidean algorithm </th>
+                    <tr>
+                        <th scope="col">Uk</th>
+                        <th scope="col">Vk</th>
+                        <th scope="col">Rk</th>
+                        <th scope="col">Qk</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td><label for="aEuclide">Enter a</label>
+                            <input type="number" title="aEuclide" id="aEuclide">
+                        </td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>
+                            <label for="bEuclide">Enter b</label>
+                            <input type="number" title="bEuclide" id="bEuclide">
+                        </td>
+                        <td>X</td>
+                    </tr>
+                    <table id="divResultatEuclide"></table>
+                </table>
+                <input type="button" value="GO" id="euclideEtenduButton">
 
-                <label for="modInverser">Modulo: </label>
-                <input type="number" name="modInverser" id="modInverser">
+            </div>
+            <div>
+                <h1>Find the inverse of one number:</h1>
+                <button id="buttonInverse">► show explanations</button>
+                <div id="divInverse" class="tabDiv">
+                    <h2>Methode</h2>
+                    <h3>Condition</h3>
+                    <p>First of all, before calculating the inverse of a number, you have to check if it is invertible. For this, we ask ourselves if the PGCD of a and n is equal to 1</p>
+                    <h3>Calculation</h3>
+                    <p>To find the inverse of a number in Z/nZ we use the Extended Euclidean algorithm (see above). The component "a" being the "n" and "b" being the number whose inverse is sought in Z/nZ. The inverse is the Vk component of the algorithm
+                    </p>
+                    <h3>Tips</h3>
+                    <p>Try for small common numbers to do it in your head.</p>
+                    <p>For example, the inverse of 2 in Z/15Z is 8 because 2x8=16=1. </p>
+                    <p>Or if you don't find the inverse after several multiples example : 9 x ? = 1 in Z/14Z, look in the negatives ! 9 x -3 = 1 in Z/14Z.</p>
+                </div>
+                <div>
+                    <label for="nInverer">Number to inverse:</label>
+                    <input type="number" name="nInverer" id="nInverer">
 
-                <input type="button" value="Inverser" id="buttonNInverser">
+                    <label for="modInverser">Modulo: </label>
+                    <input type="number" name="modInverser" id="modInverser">
+
+                    <input type="button" value="Inverser" id="buttonNInverser">
+                </div>
+            </div>
+            <div>
+                <h1>Find liste of invetible in Z/nZ</h1>
+                <button id="buttonInverseList">► show explanations</button>
+                <div id="divInverseList" class="tabDiv">
+                    <h2>Definition</h2>
+                    <p>In other words find all element a such that GCD(a,n)=1 otherwise written a ∧ n = 1</p>
+                    <h2>Methode</h2>
+                    <p>From what we have just seen, it seems long if we have to calculate the inverse of each number. But don't worry there are some techniques/properties to go faster.</p>
+                    <h3>Property</h3>
+                    <p> - 0 is never invertible</p>
+                    <p> - 1 is always invertible and his inverse is 1</p>
+                    <p> - Note the symmetry of the list</p>
+                    <h3>Execution</h3>
+                    <p>Let's see the execution through an example. Let's take Inv(Z/14Z) and make an array from 1 to 13. We know that 1 is invertible and that its inverse is 1. Then before calculating the inverse, we check that the numbers are invertible.
+                        For example for 2 : PGCD(2,14) != 1, so 2 is not invertible. We continue like that until the half of n. Because 3 = -11 so Inv(3) = Inv(-11)
+                        <==> Inv(11)=-Inv(3) (Symmetry of inverses). This symmetry is valid for non-invertible numbers: in our case 2 is not invertible so 12 is not either. One last thing to note: If the inverse of 3 is 5 for example then the inverse of 5
+                            is 3.
+
+                    </p>
+                    <table>
+                        <tr>
+                            <td>Z/14Z</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>Is it invertible</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>N</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>Y</td>
+                        </tr>
+                        <tr>
+                            <td>Inv(Z/14Z)</td>
+                            <td></td>
+                            <td>1</td>
+                            <td></td>
+                            <td>5</td>
+                            <td></td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>-3</td>
+                            <td></td>
+                            <td>-5</td>
+                            <td></td>
+                            <td>-1</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <label for="nInvList">Enter n</label>
+                    <input type="number" title="nInv" id="nInvList">
+                    <input type="button" value="GO" id="invertibleListButton">
+                </div>
+            </div>
+            <div>
+                <h1>Compute number of type: x^p[n]</h1>
+                <button id="buttonPower">► show explanations</button>
+                <div id="divPower" class="tabDiv">
+                    <h2>Method</h2>
+                    <p>We need to decompose the power "p" of our number "x" into powers of 2 (column 1). For exemple: 23 = 2^0 + 2^1 + 2^2 + 2^4 = 1+2+4+16</p>
+                    <p>Then we calculate our number x to the corresponding power of 2. For the first line it's 1, but for the following lines it's the same as doing our previous remainder to the square.</p>
+                    <p>For the third column it is sufficient to perform the modulo "n" of the second column at each step. This reduces the calculation for column 2.</p>
+                    <p>The last column indicates whether the power of 2 makes up our power "p"</p>
+                    <h2>Exemple 19^23[29]</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th scope="row" colspan="4">Méthode</th>
+                            </tr>
+                            <tr>
+                                <td>p</td>
+                                <td>x^p</td>
+                                <td>x^p[n]</td>
+                                <td>In x^p[n]</td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>19</td>
+                            <td>19</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>361</td>
+                            <td>13</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>169</td>
+                            <td>24</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>576</td>
+                            <td>25</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>625</td>
+                            <td>16</td>
+                            <td>true</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <label for="xPower">Enter x:</label>
+                    <input type="number" title="xPower" id="xPower">
+                    <label for="pPower">Enter p:</label>
+                    <input type="number" title="pPower" id="pPower">
+                    <label for="nPower">Enter n:</label>
+                    <input type="number" title="nPower" id="nPower">
+                    <input type="button" value="GO" id="powerButton">
+                    <table id="tablePower">
+                        <th scope="row" colspan="4">Méthode</th>
+                        <tr>
+                            <td>p</td>
+                            <td>x^p</td>
+                            <td>x^p[n]</td>
+                            <td>In x^p[n]</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
-
             <div>
-                <p> Résoudre l'équation du type : x^p = y in Z/mZ</p>
-                <label for="pEquation">p: </label>
-                <input type="number" name="pEquation" id="pEquation">
+                <h1>Solve equation of the type: a * x = b in Z/nZ</h1>
+                <button id="buttoneq">► show explanations</button>
+                <div id="divEq">
+                    <h2>Method</h2>
+                    <h3>Case 1: a is invertible</h3>
+                    <p>In this case it's simple, it comes back to an "ordinary" equation: x = b * Inv(a)</p>
+                    <h3>Case 2: a is not invertible but b is a multiple of GCD(a,n)</h3>
+                    <p>In this case, the formula for x is: b/a + k * n/a, k ∈ {0,...,a-1}. If the value obtained with a case is not integer, it is not a solution.</p>
+                    <h3>Case 3: a is not invertible and b is not a multiple of GCD(a,n)</h3>
+                    <p>Sorry, there is no solution</p>
 
-                <label for="yEquation">y: </label>
-                <input type="number" name="yEquation" id="yEquation">
+                </div>
+                <div>
+                    <label for="aEq">Enter a:</label>
+                    <input type="number" title="aEq" id="aEq">
+                    <label for="bEq">Enter b:</label>
+                    <input type="number" title="bEq" id="bEq">
+                    <label for="nEq">Enter n:</label>
+                    <input type="number" title="nEq" id="nEq">
+                    <input type="button" value="GO" id="eqButton">
+                </div>
 
-                <label for="modEquation">Modulo: </label>
-                <input type="number" name="modEquation" id="modEquation">
-
-                <input type="button" value="Résoudre" id="buttonResoudreEquation">
             </div>
-
 
         </section>
     </main>
+    <footer>
+        <h1>Create by Simon Martinenq and Antonin Lampin</h1>
+        <h1>Sources:</h1>
+        <p>
+            <a href="https://www.assistancescolaire.com/eleve/3e/maths/reviser-une-notion/determiner-si-un-nombre-est-premier-3mnr05">Prime number</a>,
+            <a href="https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide">GCD</a>, autres : cours délivrer par Nicolas Flasque, Federico Zalamea à
+            <a href="https://www.efrei.fr">Efrei Paris</a>,
+            <a href="https://www.youtube.com/watch?v=NRiCppM9mRg&list=PL_8L2yZR8iGnkQeNymXJIt6bICmqaJvil">Vidéos</a>
 
+        </p>
+        <h1>Bibliography:</h1>
+        <p>
+            There are many easily accessible tools that can help you supplement these notes, bring in other, deeper, perspectives, provide additional examples and exercises. Take advantage of this wealth! Here is a list of some suggested books : <br>⋆
+            F. Liret, Arithmétique: Cours et exercices corrigés, Dunod, 2011. (accessible via scholar- vox) <br>⋆ J.P. Lamoitier, L’arithmétique, une introduction ludique, éditions Hermann, 2008. (ac- cessible via scholarvox) <br>⋆ N. Koblitz, A Course
+            in Number Theory and Cryptography, Springer-Verlag, 1994. (Chap- ter I)
+        </p>
+    </footer>
+    <script src="../utils/chap1.js"></script>
 </body>
 
 </html>
