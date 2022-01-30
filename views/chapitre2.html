@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/chap2.css">
     <link rel="stylesheet" href="../static/main.css">
     <title>Chapitre 2</title>
 </head>
@@ -33,7 +34,36 @@
 
     <main>
         <section class="colgauche">
-            En cours de dev, voir Chapitre 3
+            <div>
+                <h1>Cesar's cipher</h1>
+                <label for="alphabet">Alphabet :</label>
+                <input type="text">
+                <label for="alphabet">Deciphering or Enciphering key :</label>
+                <input type="number">
+                <h1>Generalization of Cesar's cipher</h1>
+                <label for="alphabet">Alphabet :</label>
+                <input type="text">
+                <label for="alphabet">Deciphering or Enciphering key :</label>
+                <input type="number" placeholder="a or a^-1">
+                <input type="number" placeholder="b or a^-1 * b^-1">
+            </div>
+            <div>
+                <h1>Vigenere's cipher</h1>
+                <label for="alphabet">Alphabet :</label>
+                <input type="text"><br>
+                <!--   A RETIRER LE BR -->
+                <label for="alphabet">Deciphering or Enciphering key :</label>
+                <table id="tableVig">
+                </table>
+                <label for="lenTableVig">Key size:</label>
+                <input type="number" id="largeurTableVig">
+                <input type="number" id="hauteurTableVig">
+                <button id="buttonOkSizeVig">ok</button>
+                <h1>Generalization of Vigenere's cipher</h1>
+                <label for="alphabet">Alphabet :</label>
+                <input type="text">
+                <label for="alphabet">Deciphering or Enciphering key :</label>
+            </div>
         </section>
         <section class="coldroite">
 
@@ -91,6 +121,7 @@
 
         </section>
     </main>
+    <script src="../utils/chap2.js"></script>
 </body>
 
 </html>
