@@ -38,27 +38,31 @@
                 <h1>Cesar's cipher</h1>
                 <label for="alphabetCesar">Alphabet :</label>
                 <input type="text" id="alphabetCesar" value="abcdefghijklmnopqrstuvwxyz">
-                <label for="keyCesar">Deciphering or Enciphering key :</label>
+                <label for="keyCesar">Enciphering key :</label>
                 <input type="number" id="keyCesar">
                 <label for="messageCesar">Message:</label>
                 <input type="text" id="messageCesar">
-                <button id="cipherCesar">Cipher</button>
-                <button id="decipherCesar">Decipher</button>
+                <button id="buttonCipherCesar">Cipher</button>
+                <button id="buttonDecipherCesar">Decipher</button>
             </div>
             <div>
                 <h1>Generalization of Cesar's cipher</h1>
-                <label for="alphabet">Alphabet :</label>
-                <input type="text">
-                <label for="alphabet">Deciphering or Enciphering key :</label>
-                <input type="number" placeholder="a or a^-1">
-                <input type="number" placeholder="b or a^-1 * b^-1">
+                <label for="alphabetCesarG">Alphabet :</label>
+                <input type="text" value="abcdefghijklmnopqrstuvwxyz" id="alphabetCesarG">
+                <label for="key">Enciphering key :</label>
+                <input type="number" placeholder="a" id="keyAcesarG">
+                <input type="number" placeholder="b" id="keyBcesarG">
+                <label for="messageCesarG">Message:</label>
+                <input type="text" id="messageCesarG">
+                <button id="buttonCipherCesarG">Encipher</button>
+                <button id="buttonDecipherCesarG">Decipher</button>
             </div>
             <div>
                 <h1>Vigenere's cipher</h1>
                 <label for="alphabet">Alphabet :</label>
                 <input type="text"><br>
                 <!--   A RETIRER LE BR -->
-                <label for="alphabet">Deciphering or Enciphering key :</label>
+                <label for="alphabet">Enciphering key :</label>
                 <table id="tableVig">
                     <caption>B</caption>
                 </table>
@@ -72,7 +76,7 @@
                 <h1>Generalization of Vigenere's cipher</h1>
                 <label for="alphabet">Alphabet :</label>
                 <input type="text ">
-                <label for="alphabet">Deciphering or Enciphering key :</label>
+                <label for="alphabet">Enciphering key :</label>
                 <table id="tableVigGA">
                     <caption>A</caption>
                 </table>

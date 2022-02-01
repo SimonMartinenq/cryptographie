@@ -1,3 +1,5 @@
+Number.prototype.mod = function(n) { return ((this % n) + n) % n; }
+
 //pensez à quel indice commence l'alphabet ex : a=0 ou a=1
 function translateMotToNum(mots, alphabet) {
     let num = []
@@ -19,9 +21,9 @@ function translateMotToNum(mots, alphabet) {
 function translateNumToMot(num, alphabet) {
     let mot = ""
     for (let i = 0; i < num.length; i++) {
-        for (let j = 1; j <= alphabet.length; j++) { //pour a=1 -> j=1
+        for (let j = 0; j < alphabet.length; j++) { //attention à la numérotation de l'alphabet
             if (j == num[i]) {
-                mot += alphabet[j - 1] //pour a=1 indice j-1
+                mot += alphabet[j]
             }
 
         }
@@ -30,34 +32,69 @@ function translateNumToMot(num, alphabet) {
     return mot
 }
 
-/* Cesar cipher */
+/*----------- Cesar ----------*/
 
-cipherCesar.onclick = () => {
+buttonCipherCesar.onclick = () => {
     const alphabet = alphabetCesar.value
     const key = keyCesar.value
     const message = messageCesar.value
+    const modulo = alphabet.length
     const numMessage = translateMotToNum(message, alphabet)
     let cipherMessage = []
     numMessage.forEach(element => {
-        cipherMessage.push(parseInt(element) + parseInt(key))
+        cipherMessage.push((parseInt(element) + parseInt(key)).mod(modulo))
     });
     alert("The cipher message is: " + translateNumToMot(cipherMessage, alphabet))
 }
 
-decipherCesar.onclick = () => {
+buttonDecipherCesar.onclick = () => {
     const alphabet = alphabetCesar.value
     const key = keyCesar.value
     const message = messageCesar.value
+    const modulo = alphabet.length
     const numMessage = translateMotToNum(message, alphabet)
     let cipherMessage = []
     numMessage.forEach(element => {
-        cipherMessage.push(parseInt(element) + parseInt(key))
+        cipherMessage.push((parseInt(element) - parseInt(key)).mod(modulo))
+    });
+    alert("The decipher message is: " + translateNumToMot(cipherMessage, alphabet))
+}
+
+/* ------ Generalization Cesar -------*/
+
+buttonCipherCesarG.onclick = () => {
+    const alphabet = alphabetCesarG.value
+    const keyA = keyAcesarG.value
+    const keyB = keyBcesarG.value
+    const message = messageCesarG.value
+    const modulo = alphabet.length
+    const numMessage = translateMotToNum(message, alphabet)
+    let cipherMessage = []
+    numMessage.forEach(element => {
+        cipherMessage.push((parseInt(element) * parseInt(keyA) + parseInt(keyB)).mod(modulo))
     });
     alert("The cipher message is: " + translateNumToMot(cipherMessage, alphabet))
 }
 
+buttonDecipherCesarG.onclick = () => {
+    const alphabet = alphabetCesarG.value
+    const keyA = parseInt(keyAcesarG.value)
+    const keyB = parseInt(keyBcesarG.value)
+    const message = messageCesarG.value
+    const modulo = alphabet.length
 
+    const invKeyA = calculateInverse(keyA, modulo)
+    const bDecipher = (-invKeyA * calculateInverse(keyB, modulo)).mod(modulo)
 
+    const numMessage = translateMotToNum(message, alphabet)
+
+    let decipherMessage = []
+    numMessage.forEach(element => {
+        decipherMessage.push((element * keyA + keyB).mod(modulo))
+    });
+    alert("The decipher message is: " + translateNumToMot(decipherMessage, alphabet))
+
+}
 
 
 buttonOkSizeVig.onclick = () => {

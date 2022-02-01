@@ -69,7 +69,7 @@ function calculateInverse(a, modulo) {
             if (rk[i] == 0) stop = true
             i += 1
         }
-        return vk[i - 2]
+        return vk[i - 2].mod(modulo)
     } else return -666
 }
 
