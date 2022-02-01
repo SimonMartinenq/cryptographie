@@ -36,10 +36,16 @@
         <section class="colgauche">
             <div>
                 <h1>Cesar's cipher</h1>
-                <label for="alphabet">Alphabet :</label>
-                <input type="text">
-                <label for="alphabet">Deciphering or Enciphering key :</label>
-                <input type="number">
+                <label for="alphabetCesar">Alphabet :</label>
+                <input type="text" id="alphabetCesar" value="abcdefghijklmnopqrstuvwxyz">
+                <label for="keyCesar">Deciphering or Enciphering key :</label>
+                <input type="number" id="keyCesar">
+                <label for="messageCesar">Message:</label>
+                <input type="text" id="messageCesar">
+                <button id="cipherCesar">Cipher</button>
+                <button id="decipherCesar">Decipher</button>
+            </div>
+            <div>
                 <h1>Generalization of Cesar's cipher</h1>
                 <label for="alphabet">Alphabet :</label>
                 <input type="text">
@@ -54,17 +60,18 @@
                 <!--   A RETIRER LE BR -->
                 <label for="alphabet">Deciphering or Enciphering key :</label>
                 <table id="tableVig">
+                    <caption>B</caption>
                 </table>
                 <label for="lenTableVig">Key size:</label>
-                <input type="number" id="hauteurTableVig">
+                <input type="number" id="hauteurTableVig" placeholder="matrice 3x3 -> 3">
                 <button id="buttonOkSizeVig">ok</button><br>
                 <label for="messageVig">Message to cipher or decipher:</label>
-                <input type="text">
+                <input type="text ">
 
 
                 <h1>Generalization of Vigenere's cipher</h1>
                 <label for="alphabet">Alphabet :</label>
-                <input type="text">
+                <input type="text ">
                 <label for="alphabet">Deciphering or Enciphering key :</label>
                 <table id="tableVigGA">
                     <caption>A</caption>
@@ -72,13 +79,14 @@
                 <table id="tableVigGB">
                     <caption>B</caption>
                 </table>
-                <label for="lenTableVig">Key size (A):</label>
-                <input type="number" id="dimensionsTableVigG">
+                <label for="lenTableVig ">Key size :</label>
+                <input type="number" id="dimensionsTableVigG" placeholder="matrice 3x3 -> 3">
                 <button id="buttonOkSizeVigG">ok</button><br>
                 <label for="messageVigG">Message to cipher or decipher:</label>
                 <input type="text">
             </div>
         </section>
+
         <section class="coldroite">
 
 

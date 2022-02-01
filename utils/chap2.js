@@ -1,7 +1,64 @@
-//ajouter a "tableKey un nombre "num" de ligne passé en parametres
-function redefTable(tableKey, num) {
+//pensez à quel indice commence l'alphabet ex : a=0 ou a=1
+function translateMotToNum(mots, alphabet) {
+    let num = []
+    for (let i = 0; i < mots.length; i++) {
+        for (let j = 0; j < alphabet.length; j++) {
+            if (mots[i] == alphabet[j]) {
+                num.push(j)
+            }
 
+        }
+
+    }
+    return num
 }
+
+
+//pensez a mettre un tableau d'entier pour le nombre 
+//Dans ce cas a=1
+function translateNumToMot(num, alphabet) {
+    let mot = ""
+    for (let i = 0; i < num.length; i++) {
+        for (let j = 1; j <= alphabet.length; j++) { //pour a=1 -> j=1
+            if (j == num[i]) {
+                mot += alphabet[j - 1] //pour a=1 indice j-1
+            }
+
+        }
+
+    }
+    return mot
+}
+
+/* Cesar cipher */
+
+cipherCesar.onclick = () => {
+    const alphabet = alphabetCesar.value
+    const key = keyCesar.value
+    const message = messageCesar.value
+    const numMessage = translateMotToNum(message, alphabet)
+    let cipherMessage = []
+    numMessage.forEach(element => {
+        cipherMessage.push(parseInt(element) + parseInt(key))
+    });
+    alert("The cipher message is: " + translateNumToMot(cipherMessage, alphabet))
+}
+
+decipherCesar.onclick = () => {
+    const alphabet = alphabetCesar.value
+    const key = keyCesar.value
+    const message = messageCesar.value
+    const numMessage = translateMotToNum(message, alphabet)
+    let cipherMessage = []
+    numMessage.forEach(element => {
+        cipherMessage.push(parseInt(element) + parseInt(key))
+    });
+    alert("The cipher message is: " + translateNumToMot(cipherMessage, alphabet))
+}
+
+
+
+
 
 buttonOkSizeVig.onclick = () => {
     const hauteur = hauteurTableVig.value
