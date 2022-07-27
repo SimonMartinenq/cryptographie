@@ -7,6 +7,11 @@ body {
     background-size: cover;
 }
 
+h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
 .displayFlex {
     display: flex;
 }
@@ -82,7 +87,7 @@ body {
     float: right;
     width: 23%;
     padding: 2%;
-    border-left: solid white;
+    background-color: rgb(240, 226, 231);
 }
 
 #computeEulerButton,
@@ -135,12 +140,6 @@ a:hover {
 /* menu */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .container {
     width: 100%;
 }
@@ -255,12 +254,11 @@ a:hover {
     padding-top: 1.2rem;
 }
 
-.logo {
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    font-size: 1.2rem;
-    color: #0e2431;
+.titre_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rosybrown;
 }
 
 .nav-container input[type="checkbox"]:checked~.menu-items {
@@ -279,6 +277,6 @@ a:hover {
     transform: rotate(-45deg);
 }
 
-.nav-container input[type="checkbox"]:checked~.logo {
+.nav-container input[type="checkbox"]:checked~.titre_page {
     display: none;
 }
