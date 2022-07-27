@@ -1,9 +1,9 @@
 body {
-    background-color: silver;
+    background-color: white;
     color: black;
     padding: 0px;
     margin: 0px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     background-size: cover;
 }
 
@@ -28,48 +28,47 @@ body {
 
 /* HEADER */
 
-#logo {
+#menu {
     height: 70px;
     width: 70px;
     margin: 10%;
 }
 
 .header_container {
-    background-color: rgb(240, 240, 240);
+    background-color: white;
     margin: 0;
     padding: 5px 5px;
     color: black;
-    font-family: 'Courier New', Courier, monospace;
-    position: -webkit-sticky;
-    position: sticky;
+    /* position: -webkit-sticky; */
+    /* position: sticky; */
     z-index: 1;
     top: 0;
 }
 
 #nav_bar_liste {
-    width: 90%;
-    margin: 0;
+    width: 100%;
+    margin-top: 4%;
     text-align: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    padding: 0;
 }
 
 #nav_bar_liste li {
     text-align: center;
     display: inline;
-    float: left;
-    padding: 5px 2%;
     font-size: medium;
+    width: 110px;
+    margin: 2%;
 }
 
 .button_topnavbar {
     color: black;
-    padding: 12px;
     font-size: 20px;
     cursor: pointer;
     text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
+    width: min-content;
 }
 
 .button_topnavbar:hover {
