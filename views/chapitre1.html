@@ -5,36 +5,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/chap1.css">
     <link rel="stylesheet" href="../static/main.css">
+    <link rel="stylesheet" href="../static/chap1.css">
 
     <title>Chapitre 1</title>
 </head>
 
 <body>
-    <header class="header_container">
-        <nav class="displayFlex">
-            <a href="accueil.html"><img src="../static/logo.png" alt="logo" id="logo"></a>
-            <ul id="nav_bar_liste">
-                <li>
-                    <a href="chapitre1.html" class="button_topnavbar">Chapitre 1</a>
-                </li>
-                <li>
-                    <a href="chapitre2.html" class="button_topnavbar">Chapitre 2</a>
-                </li>
-                <li>
-                    <a href="chapitre3.html" class="button_topnavbar">Chapitre 3</a>
-                </li>
-                <li>
-                    <a href="chapitre4.html" class="button_topnavbar">Chapitre 4</a>
-                </li>
-            </ul>
-            <div id="menu-button" class="close"></div>
+    <header>
+        <nav>
+            <div class="navbar">
+                <div class="container nav-container">
+                    <input class="checkbox" type="checkbox" name="" id="" />
+                    <div class="hamburger-lines">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </div>
+
+                    <div class="titre_page">
+                        <h1>Chapitre 1 : Basics of Arihmetics</h1>
+                    </div>
+                    <div class="menu-items">
+                        <li><a class="dropdown-item" href="../views/chapitre1.html">Chapter 1 : Basics of Arihmetics</a></li>
+                        <li><a class="dropdown-item" href="../views/chapitre2.html">Chapter 2 : Principles of Cryptography</a></li>
+                        <li><a class="dropdown-item" href="../views/chapitre3.html">Chapter 3 : RSA Cryptosystem</a></li>
+                        <li><a class="dropdown-item" href="../views/chapitre4.html">Chapter 4 : Group Theory and Elgamal Cryptosystem</a></li>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
     <main>
         <section>
-            <div>
+            <div class="paragraphe">
                 <h1>Determine if a number is prime</h1>
                 <button id="buttonExpPrime">► show explanations</button>
                 <div id="divExpPrime" class="tabDiv">
@@ -60,7 +64,7 @@
                     <input type="button" value="GO" id="isPrimeButton">
                 </div>
             </div>
-            <div>
+            <div class="paragraphe">
                 <h1>Compute PGCD</h1>
                 <button id="buttonExpPgcd">► show explanations</button>
                 <div id="divExpPgcd" class="tabDiv">
@@ -84,7 +88,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="paragraphe">
                 <h1>Determine the prime factorisation of a number, deduce the number of divisors</h1>
                 <button id="buttonPrimeFactor">► show explanations</button>
                 <div id="divPrimeFactor" class="tabDiv">
@@ -100,7 +104,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="paragraphe">
                 <h1>Compute extended Euclidean algorithm</h1>
                 <button id="buttonExtendEuclide">► show explanations</button>
                 <div id="divExtendEuclide" class="tabDiv">
@@ -141,7 +145,7 @@
                 <input type="button" value="GO" id="euclideEtenduButton">
 
             </div>
-            <div>
+            <div class="paragraphe">
                 <h1>Find the inverse of one number:</h1>
                 <button id="buttonInverse">► show explanations</button>
                 <div id="divInverse" class="tabDiv">
@@ -166,7 +170,7 @@
                     <input type="button" value="Inverser" id="buttonNInverser">
                 </div>
             </div>
-            <div>
+            <div class="paragraphe">
                 <h1>Find liste of invetible in Z/nZ</h1>
                 <button id="buttonInverseList">► show explanations</button>
                 <div id="divInverseList" class="tabDiv">
@@ -245,7 +249,7 @@
                     <input type="button" value="GO" id="invertibleListButton">
                 </div>
             </div>
-            <div>
+            <div class="paragraphe">
                 <h1>Compute number of type: x^p[n]</h1>
                 <button id="buttonPower">► show explanations</button>
                 <div id="divPower" class="tabDiv">
@@ -319,7 +323,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="paragraphe">
                 <h1>Solve equation of the type: a * x = b in Z/nZ</h1>
                 <button id="buttoneq">► show explanations</button>
                 <div id="divEq">
